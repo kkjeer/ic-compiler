@@ -1,0 +1,6 @@
+class CS301 extends CSCore { 
+    void catFun(){
+        int ctz = 9;
+    }
+}
+

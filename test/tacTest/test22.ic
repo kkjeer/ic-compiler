@@ -1,0 +1,12 @@
+class IfInWhile {
+	void main (string [] args) {
+		int x = 0;
+		while (x < 5) {
+			if (args[x] == "stop") {
+				break;
+			} else {
+				continue;
+			}
+		}
+	}
+}

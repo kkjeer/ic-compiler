@@ -1,0 +1,9 @@
+class BadIfCond {
+	void main (string [] args) {
+		if (args[0]) {
+			Library.println("bad");
+		} else {
+			args[1] = "whoops";
+		}
+	}
+}

@@ -1,0 +1,11 @@
+class Parent {
+	int x;
+}
+
+class FirstChild extends Parent {
+	string s;
+}
+
+class SecondChild extends Parent {
+	string s;
+}

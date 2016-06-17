@@ -1,0 +1,16 @@
+class LiveWithArrays {
+	void main (string [] args) {
+		int [] a1 = new int[5];
+		string [] a2;
+		boolean [] a3;
+		int x;
+		
+		x = 10;
+		a2 = new string[x];
+		
+		a1[0] = a2.length;
+		a2[4] = "Hello";
+		
+		a3 = new boolean[3]; //dead
+	}
+}

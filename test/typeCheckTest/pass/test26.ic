@@ -1,0 +1,28 @@
+class TestVarDeclsInWhileLoops{
+
+    void main(string [] args) {
+        int varOne = 8;
+        int varTwo = 3;
+    
+        while (varOne <= 500) {
+            int varDeclThree = 6;
+            int varDeclFour = 7;
+            varOne = varOne + 5;
+        }
+    }
+    
+    int methodOne() {
+        int catOne = 5;
+        while (catOne < 6){
+            int catTwo = 2;
+            int catThree = 3;
+            int catFour = 4;
+            int catFive = 5;
+            catTwo = catTwo + 6;
+            catFive = catThree / catOne;
+            
+            int catSix = 6; 
+        }
+    }
+
+}

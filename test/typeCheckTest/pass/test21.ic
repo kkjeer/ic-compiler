@@ -1,0 +1,39 @@
+class ParentFields {
+	int x;
+	string s;
+	boolean b;
+	
+	void setX (int x) { 
+		this.x = x;
+	}
+	
+	void setS (string s) {
+		this.s = s;
+	}
+}
+
+class ChildFields extends ParentFields {
+	int otherX;
+	string otherS;
+	boolean otherB;
+	int [] ints;
+	string [][] strMatrix;
+	
+	string toString () {
+		return this.s;
+	}
+	
+	void main (string [] args) {
+		string s = this.s;
+		this.setS(s + "hi");
+		
+		this.setX(0);
+		this.otherX = 5;
+		Library.println(toString());
+		ints = new int[5];
+		ints[0] = x + 2;
+		strMatrix = new string[][6];
+		strMatrix[0] = new string[4];
+		strMatrix[0][2] = s + otherS;
+	}
+}

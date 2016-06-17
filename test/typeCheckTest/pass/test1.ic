@@ -1,0 +1,49 @@
+//testing primitive return types
+class ParentReturnType {
+	int returnsAnInt () {
+		return 0;
+	}
+	
+	string returnsAString () {
+		return "Hello";
+	}
+	
+	boolean returnsABoolean () {
+		return true;
+	}
+	
+	void voidMethod () {
+		Library.println("Hi");
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class ChildReturnType extends ParentReturnType {
+	/*
+	methods overridden from the parent class
+	*/
+	
+	int returnsAnInt () {
+		return 1;
+	}
+	
+	string returnsAString () {
+		return "World";
+	}
+	
+	boolean returnsABoolean () {
+		return false;
+	}
+	
+	void voidMethod () {
+		Library.println("Bye");
+	}
+	
+	//method not overriden from the parent class
+	int childInt () {
+		return 5;
+	}
+}

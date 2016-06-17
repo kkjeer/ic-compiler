@@ -1,0 +1,8 @@
+boolean cat = true;
+if cat{
+    return "9 lives"
+}
+else{
+    return "Schrodinger"
+}
+

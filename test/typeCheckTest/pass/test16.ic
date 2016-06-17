@@ -1,0 +1,35 @@
+class Animal {
+	int getInt () {
+		return 0;
+	}
+}
+
+class Parent {
+	string parentMethod () {
+		return "Parent";
+	}
+}
+
+class Test extends Parent {
+	void testMethod () {
+		string s = "Testing testing";
+	}
+	
+	void testMethod2 () {
+		string s = "More testing";
+	}
+	
+	string testMethod3 () {
+		return "Hi";
+	}
+	
+	void main (string [] args) {
+		string s = parentMethod();
+		string t = this.parentMethod();
+		Animal animal = new Animal();
+		int x;
+		x = animal.getInt();
+		this.testMethod();
+		testMethod2();
+	}
+}

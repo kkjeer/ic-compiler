@@ -1,0 +1,9 @@
+class BadConstructorCall extends OverallBadness {
+	SomeClass mySomeClass;
+	
+	//calling a constructor with parameters is illegal in IC grammar
+	void doThings () {
+		this.mySomeClass = new mySomeClass("illegal parameter");
+	}
+	
+}

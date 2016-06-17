@@ -1,0 +1,10 @@
+class ClassWithFields {
+	int x;
+	int y;
+	int z;
+	int a, b, c;
+	string firstStr;
+	string secondStr;
+	string thirdStr, fourthStr;
+	boolean cond;
+}

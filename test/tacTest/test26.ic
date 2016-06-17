@@ -1,0 +1,29 @@
+class TestTwoMethodsWithConditionalVarDecls{
+
+    void catFun() {}
+    
+    void main(string [] args) {
+        int varOne = 8;
+        int varTwo = 3;
+    
+        if (varOne == 5) {
+            int varDeclThree = 6;
+            int varDeclFour = 7;
+        }
+        else{
+            int varDeclFive = 5; 
+        }
+    }
+}
+
+class SecondClass{
+    void cowTimes() {
+        int secondClassVDOne = 8;
+        string secondClassVDTwo = "Cowzzzz";
+        if (secondClassVDOne == 3) {
+            int secondClassVDThree = 3;
+            int secondClassVDFour = 4;
+            int secondClassVDFive = 5; 
+        }
+    }
+}

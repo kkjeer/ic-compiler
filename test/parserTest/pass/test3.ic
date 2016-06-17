@@ -1,0 +1,36 @@
+class ClassWithMethods extends OtherClass {
+	//testing fruitful method, multiple var declarations, no parameters
+	string strMethod () {
+		int x = 2;
+		int y = 3, z = 4;
+		return "Hello";
+	}
+	
+	//testing Library calls
+	boolean boolMethod (string s, int n) {
+		boolean result = n > (3 + 4 * 2);
+		Library.println(s);
+		return result;
+	}
+	
+	(* testing (*if/else*) statements *)
+	int intMethod (boolean cond) {
+		if (cond) {
+			Library.println("First block");
+		} else {
+			if (cond && true) {
+				Library.println("Second block");
+			}
+		}
+		return 0;
+	}
+	
+	//testing void method, virtual and library calls
+	void voidMethod () {
+		string myStr = this.strMethod();
+		int myInt = this.intMethod(true);
+		boolean myBool = this.boolMethod(myStr, myInt);
+		Library.println(myStr);
+		Library.printi(myInt);
+	}
+}

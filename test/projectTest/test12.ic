@@ -1,0 +1,35 @@
+class TestMethodParams {
+	void main (string [] args) {
+		int len = args.length;
+		string str = "hello";
+		Library.println("Project test 12: TestMethodParams");
+		Library.print("len: ");
+		Library.printi(len);
+		Library.println("");
+		Library.print("str: ");
+		Library.print(str);
+		Library.println("");
+		
+		intParam(2);
+		stringParam("hi"); //causes segfault
+		boolParam(true);
+	}
+	
+	void intParam (int x) {
+		Library.print("x: ");
+		Library.printi(x); //prints huge number (address?)
+		Library.println("");
+	}
+	
+	void stringParam(string s) {
+		Library.print("s: ");
+		Library.print(s); //causes segfault
+		Library.println("");
+	}
+	
+	void boolParam(boolean b) {
+		Library.print("b: ");
+		Library.printb(b);
+		Library.println("");
+	}
+}

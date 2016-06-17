@@ -1,0 +1,5 @@
+class BadPlus {
+	void main (string [] args) {
+		int x = true + "hey";
+	}
+}

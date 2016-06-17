@@ -1,0 +1,7 @@
+class UndeclaredVar {
+	int x;
+	
+	void badVar () {
+		x = y + 2;
+	}
+}

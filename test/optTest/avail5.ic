@@ -1,0 +1,12 @@
+class AvailArrayLength {
+	void main (string [] args) {
+		int [] a;
+		int x, y, z;
+		
+		a = new int[6];
+		x = a.length;
+		y = a.length; //replace with y = x
+		a[2] = 25;
+		z = a.length; //can't replace
+	}
+}

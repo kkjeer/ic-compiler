@@ -1,0 +1,16 @@
+class Test {
+	int x;
+	string s;
+	boolean b;
+}
+
+class LiveWithFields {
+	void main (string [] args) {
+		Test myTest = new Test();
+		int myInt;
+		
+		myInt = myTest.x; //dead
+		myTest.s = "Hello";
+		myTest.b = true;
+	}
+}

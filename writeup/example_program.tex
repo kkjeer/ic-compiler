@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.5in]{geometry}
+
+\title{CS 301 Example Program}
+\author{Katherine Kjeer}
+\date{May 14, 2016}
+
+\begin{document}
+\maketitle
+\begin{minipage}{0.425\textwidth}
+\begin{verbatim}
+---Original Program---
+class Example extends None {
+    <string> => boolean fcnField
+    
+    void main(string [] args) {
+        <int> => boolean f
+        boolean cond
+        
+        fcnField = (string s): boolean => {
+            return true
+        }
+        
+        f = (int fParam): boolean => {
+            int fLocal = 3
+            <int> => int g
+            g = (int gParam): int => {
+                return fLocal + fParam * gParam
+            }
+            return g(fParam + 10) > 0 
+                && fcnField(args[0])
+        }
+        
+        cond = f(5)
+        Library.print("cond: ")
+        Library.printb(cond)
+        Library.println("")
+    }
+}
+\end{verbatim}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.475\textwidth}
+\begin{verbatim}
+---Closure Program---
+class Example extends None {
+    PARAMS__string__RETURN__boolean_Template fcnField
+    
+    void main(string [] args) {
+        PARAMS__int__RETURN__boolean_Template f
+        boolean cond
+        
+        fcnField = new Example_main_anon0_Closure()
+            .create(fcnField, args, f, cond)
+            
+            
+        f = new Example_main_anon1_Closure()
+            .create(fcnField, args, f, cond)
+            
+
+
+
+
+
+
+            
+        cond = f.call(5)
+        Library.print("cond: ")
+        Library.printb(cond)
+        Library.println("")
+    }
+}
+\end{verbatim}
+\end{minipage}%
+\\\\\\\
+\begin{verbatim}
+---Template Classes---
+class PARAMS__int__RETURN__boolean_Template extends None {
+    boolean call(int templateParam_0) {
+        return true
+    }
+}
+\end{verbatim}
+\begin{verbatim}
+class PARAMS__string__RETURN__boolean_Template extends None {
+    boolean call(string s) {
+        return true
+    }
+}
+\end{verbatim}
+\begin{verbatim}
+class PARAMS__int__RETURN__int_Template extends None {
+    int call(int templateParam_0) {
+        return 0
+    }
+}
+\end{verbatim}
+\begin{verbatim}
+---Closure Classes---
+class Example_main_anon0_Closure extends Some(PARAMS__string__RETURN__boolean_Template) {
+    PARAMS__string__RETURN__boolean_Template fcnField
+    string [] args
+    PARAMS__int__RETURN__boolean_Template f
+    boolean cond
+    
+    Example_main_anon0_Closure create(
+        PARAMS__string__RETURN__boolean_Template fcnField, 
+        string [] args,
+        PARAMS__int__RETURN__boolean_Template f,
+        boolean cond
+    ) {
+        this.fcnField = fcnField
+        this.args = args
+        this.f = f
+        this.cond = cond
+        return this
+    }
+    
+    boolean call(string s) {
+        return true
+    }
+}
+\end{verbatim}
+\begin{verbatim}
+class Example_main_anon1_Closure extends Some(PARAMS__int__RETURN__boolean_Template) {
+    PARAMS__string__RETURN__boolean_Template fcnField
+    string [] args
+    PARAMS__int__RETURN__boolean_Template f
+    boolean cond
+    
+    Example_main_anon1_Closure create(
+        PARAMS__string__RETURN__boolean_Template fcnField, 
+        string [] args,
+        PARAMS__int__RETURN__boolean_Template f,
+        boolean cond
+    ) {
+        this.fcnField = fcnField
+        this.args = args
+        this.f = f
+        this.cond = cond
+        return this
+    }
+    
+    boolean call(int fParam) {
+        int fLocal = 3
+        PARAMS__int__RETURN__int_Template g
+        g = new Example_main_anon1_anon1_Closure().create(fParam, args, g, fLocal, cond, fcnField, f)
+        return g.call(fParam + 10) > 0 && fcnField.call(args[0])
+    }
+}
+\end{verbatim}
+\begin{verbatim}
+class Example_main_anon1_anon1_Closure extends Some(PARAMS__int__RETURN__int_Template) {
+    int fParam
+    string [] args
+    PARAMS__int__RETURN__int_Template g
+    int fLocal
+    boolean cond
+    PARAMS__string__RETURN__boolean_Template fcnField
+    PARAMS__int__RETURN__boolean_Template f
+    
+    Example_main_anon1_anon1_Closure create(
+        int fParam, string [] args,
+        PARAMS__int__RETURN__int_Template g, 
+        int fLocal, boolean cond,
+        PARAMS__string__RETURN__boolean_Template fcnField, PARAMS__int__RETURN__boolean_Template f
+    ) {
+        this.fParam = fParam
+        this.args = args
+        this.g = g
+        this.fLocal = fLocal
+        this.cond = cond
+        this.fcnField = fcnField
+        this.f = f
+        return this
+    }
+    
+    int call(int gParam) {
+        return fLocal + fParam * gParam
+    }
+}
+\end{verbatim}
+
+\end{document}

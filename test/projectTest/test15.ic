@@ -1,0 +1,39 @@
+class SimpleMap {
+	void main (string [] args) {
+		function map (int [] arr, <int> => int fcn): int [] = {
+			int i = 0;
+			int [] result = new int [2];
+			
+			while (i < 2) {
+				result[i] = fcn{i}; //causes segfault - also fcn{arr[i]} causes segfault
+				i = i + 1;
+			}
+			
+			return result;
+		}
+		
+		<int> => int f;
+		int [] mapped;
+		int m = 0;
+		
+		int [] ints = new int [2];
+		
+		ints[0] = 0;
+		ints[1] = 1;
+		
+		f = (int i): int => {return i + 3;};
+		
+		mapped = map{ints, f};
+		
+		Library.println("Project test 15: SimpleMap");
+		
+		while (m < 2) {
+			Library.print("m: ");
+			Library.printi(m);
+			Library.print(" mapped[m]: ");
+			Library.printi(mapped[m]);
+			Library.println("");
+			m = m + 1;
+		}
+	}
+}

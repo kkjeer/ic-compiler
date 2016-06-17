@@ -1,0 +1,5 @@
+class TestThis {
+	void main (string [] args) {
+		TestThis myTestThis = this;
+	}
+}

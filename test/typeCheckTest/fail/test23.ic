@@ -1,0 +1,5 @@
+class BadNot {
+	void main (string [] args) {
+		boolean cond = !args[0];
+	}
+}

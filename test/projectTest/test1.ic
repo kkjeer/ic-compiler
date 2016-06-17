@@ -1,0 +1,9 @@
+class FunctionTypeTest {
+	void main (string [] args) {
+		<int, int, boolean, string []> => string f;
+		<int [], <int> => string> => boolean g;
+		<> => <int, int> => string h;
+		<boolean> => Unit p;
+		Library.println("Project test 1: FunctionTypeTest");
+	}
+}

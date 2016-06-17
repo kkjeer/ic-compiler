@@ -1,0 +1,7 @@
+class BasicUnInstrs {
+	void main (string [] args) {
+		boolean a = !true;
+		boolean b = !false;
+		int x = -1;
+	}
+}

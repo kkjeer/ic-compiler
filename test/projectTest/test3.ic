@@ -1,0 +1,15 @@
+class AnonFunctions {
+	void main (string [] args) {
+		<int, int> => string f, g;
+		
+		f = (int x, int y): string => {
+			return "Hello";
+		};
+		
+		g = (int i, int j): string => {
+			return "Goodbye";
+		};
+		
+		Library.println("Project test 3: AnonFunctions");
+	}
+}

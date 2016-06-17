@@ -1,0 +1,28 @@
+//testing class parameter (and return type) overriding
+class Animal {
+	Animal getAnimal (Cow cow, Gorilla gorilla) {
+		return new Animal();
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class Cow extends Animal {
+	Gorilla getAnimal (Animal animal, Monkey monkey) {
+		return new Gorilla();
+	}
+}
+
+class Monkey extends Animal {
+	Animal getAnimal (Animal animal, Gorilla monkey) {
+		return new Cow();
+	}
+}
+
+class Gorilla extends Monkey {
+	Monkey getAnimal (Animal animal, Gorilla gorilla) {
+		return new Monkey();
+	}
+}

@@ -1,0 +1,10 @@
+class TestIfElse {
+	void main (string [] args) {
+		string s;
+		if (true) {
+			s = "Yes";
+		} else {
+			s = "No";
+		}
+	}
+}

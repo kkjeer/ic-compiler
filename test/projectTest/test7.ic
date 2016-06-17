@@ -1,0 +1,30 @@
+class NestedFunctions {
+	void main (string [] args) {
+		function f(int x, int y): int = {
+			string fLocal = "Hi";
+			function g(boolean b): int = {
+				return x;
+			}
+			function h(boolean b): int = {
+				return y;
+			}
+			return x + y;
+		}
+		
+		function g(boolean b): string = {
+			return "Bye";
+		}
+		
+		int i_Later = (int x, int y): int => {return x - y;}(4, 2);
+		int j_Later;
+		string str_Later;
+		
+		j_Later = f{5, 8};
+		str_Later = g{true};
+		
+		Library.println("Project test 7: NestedFunctions");
+		Library.printi(i_Later);
+		Library.println("");
+		Library.println(str_Later);
+	}
+}

@@ -1,0 +1,10 @@
+class BasicComparisons {
+	void main (string [] args) {
+		boolean a = 1 < 2;
+		boolean b = 3 <= 4;
+		boolean c = 5 > 6;
+		boolean d = 7 >= 8;
+		boolean e = 9 == 10;
+		boolean f = 10 != 11;
+	}
+}

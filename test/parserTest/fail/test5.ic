@@ -1,0 +1,4 @@
+class IllegalVisibility {
+	private int x;
+	
+}

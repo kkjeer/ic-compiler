@@ -1,0 +1,13 @@
+class SimpleCopy {
+	void main (string [] args) {
+		int x, y, z, w;
+		
+		y = 2;
+		x = y;		//replace with x = 2
+		z = x + 1; //replace with 2 + 1
+		w = -x; //replace with -2
+		
+		Library.printi(z);
+		Library.printi(w);
+	}
+}

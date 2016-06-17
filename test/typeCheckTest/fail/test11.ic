@@ -1,0 +1,23 @@
+//testing overriding in transitive subclasses
+class Animal {
+	void speak () {
+		Library.println("Hi");
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class Dog extends Animal {
+	void bark () {
+		Library.println("Woof");
+	}
+}
+
+class Labrador extends Dog {
+	//illegal return type
+	string speak () {
+		return "Bad dog";
+	}
+}

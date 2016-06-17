@@ -1,0 +1,12 @@
+class BadArrayAssign {
+	int bad (int x) {
+		string [] strs = new string[x];
+		strs[x] = 3;
+		return x;
+	}
+	
+	void main (string [] args) {
+		int n = bad(5);
+	}
+}
+	

@@ -1,0 +1,5 @@
+class E{
+        void main(string[] args){
+                 int args = 0;
+         }
+  }

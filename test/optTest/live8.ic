@@ -1,0 +1,11 @@
+class LiveIf {
+	void main (string [] args) {
+		boolean test = true;
+		boolean dead = false;
+		if (test) {
+			Library.println("Yes");
+		} else {
+			dead = !dead;
+		}
+	}
+}

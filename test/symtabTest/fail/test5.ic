@@ -1,0 +1,9 @@
+class MultiMethods {
+	void myMethod () {
+	
+	}
+	
+	void myMethod () {
+	
+	}
+}

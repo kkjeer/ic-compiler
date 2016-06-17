@@ -1,0 +1,227 @@
+class MapAndFilter {
+	void main (string [] args) {
+		int [] ints = new int [5];
+		string [] strs = new string [5];
+		boolean [] bools = new boolean [5];
+		int i = 0;
+		
+		while (i < 5) {
+			ints[i] = i;
+			bools[i] = Library.random(5) > 2;
+			i = i + 1;
+		}
+		
+		strs[0] = "world";
+		strs[1] = "compilers";
+		strs[2] = "IC";
+		strs[3] = "closures";
+		strs[4] = "CS 301";
+		
+		Library.println("***Original***");
+		Library.print("Original ints: ");
+		printInts(ints);
+		Library.print("Original strings: ");
+		printStrings(strs);
+		Library.print("Original bools: ");
+		printBools(bools);
+		Library.println("");
+		
+		testMap(ints, strs, bools);
+		testFilter(ints, strs, bools);
+	}
+	
+	void testMap (int [] ints, string [] strs, boolean [] bools) {
+		function mapInts (int [] arr, <int> => int fcn): int [] = {
+			int [] result = new int [arr.length];
+			int i = 0;
+			
+			while (i < arr.length) {
+				result[i] = fcn{arr[i]};
+				i = i + 1;
+			}
+			
+			return result;
+		}
+		
+		function mapStrings (string [] arr, <string> => string fcn): string [] = {
+			string [] result = new string [arr.length];
+			int i = 0;
+			
+			while (i < arr.length) {
+				result[i] = fcn{arr[i]};
+				i = i + 1;
+			}
+			
+			return result;
+		}
+		
+		function mapBools (boolean [] arr, <boolean> => boolean fcn): boolean [] = {
+			boolean [] result = new boolean [arr.length];
+			int i = 0;
+			
+			while (i < arr.length) {
+				result[i] = fcn{arr[i]};
+				i = i + 1;
+			}
+			
+			return result;
+		}
+		
+		function boolFcn (boolean b): boolean = {
+			return !b;
+		}
+		
+		int [] mappedInts;
+		string [] mappedStrs;
+		boolean [] mappedBools;
+		
+		Library.println("***Testing map***");
+		
+		mappedInts = mapInts{ints, (int i): int => {return i + 1;}};
+		mappedStrs = mapStrings{strs, makeStringFcn()};
+		mappedBools = mapBools{bools, boolFcn};
+		
+		Library.print("mappedInts: ");
+		printInts(mappedInts);
+		Library.print("mappedStrs: ");
+		printStrings(mappedStrs);
+		Library.print("mappedBools: ");
+		printBools(mappedBools);
+		Library.println("");
+	}
+	
+	void testFilter (int [] ints, string [] strs, boolean [] bools) {
+		function filterInts (int [] arr, <int> => boolean fcn): int [] = {
+			int [] filtered = new int [arr.length];
+			int [] result;
+			int [] nonNullIndices = new int [arr.length];
+			int resultLength = 0;
+			int i = 0, j = 0;
+			
+			while (i < arr.length) {
+				if (fcn{arr[i]}) {
+					filtered[i] = arr[i];
+					nonNullIndices[resultLength] = i;
+					resultLength = resultLength + 1;
+				}
+				i = i + 1;
+			}
+			
+			result = new int [resultLength];
+			while (j < resultLength) {
+				result[j] = filtered[nonNullIndices[j]];
+				j = j + 1;
+			}
+			
+			return result;
+		}
+		
+		function filterStrings (string [] arr, <string> => boolean fcn): string [] = {
+			string [] filtered = new string [arr.length];
+			string [] result;
+			int [] nonNullIndices = new int [arr.length];
+			int resultLength = 0;
+			int i = 0, j = 0;
+			
+			while (i < arr.length) {
+				if (fcn{arr[i]}) {
+					filtered[i] = arr[i];
+					nonNullIndices[resultLength] = i;
+					resultLength = resultLength + 1;
+				}
+				i = i + 1;
+			}
+			
+			result = new string [resultLength];
+			while (j < resultLength) {
+				result[j] = filtered[nonNullIndices[j]];
+				j = j + 1;
+			}
+			
+			return result;
+		}
+		
+		function filterBools (boolean [] arr, <boolean> => boolean fcn): boolean [] = {
+			boolean [] filtered = new boolean [arr.length];
+			boolean [] result;
+			int [] nonNullIndices = new int [arr.length];
+			int resultLength = 0;
+			int i = 0, j = 0;
+			
+			while (i < arr.length) {
+				if (fcn{arr[i]}) {
+					filtered[i] = arr[i];
+					nonNullIndices[resultLength] = i;
+					resultLength = resultLength + 1;
+				}
+				i = i + 1;
+			}
+			
+			result = new boolean [resultLength];
+			while (j < resultLength) {
+				result[j] = filtered[nonNullIndices[j]];
+				j = j + 1;
+			}
+			
+			return result;
+		}
+		
+		int [] filteredInts;
+		string [] filteredStrs;
+		boolean [] filteredBools;
+		
+		Library.println("***Testing filter***");
+		
+		filteredInts = filterInts{ints, (int i): boolean => {return (i % 2) == 0;}};
+		filteredStrs = filterStrings{strs, (string s): boolean => {return Library.random(7) > 3;}};
+		filteredBools = filterBools{bools, (boolean b): boolean => {return b;}};
+		
+		Library.print("filteredInts: ");
+		printInts(filteredInts);
+		Library.print("filteredStrs: ");
+		printStrings(filteredStrs);
+		Library.print("filteredBools: ");
+		printBools(filteredBools);
+		Library.println("");
+	}
+	
+	<string> => string makeStringFcn () {
+		return (string s): string => {return "Hello " + s;};
+	}
+	
+	void printInts (int [] ints) {
+		int i = 0;
+		while (i < ints.length) {
+			Library.printi(ints[i]);
+			if (i < ints.length - 1) {
+				Library.print(", ");
+			}
+			i = i + 1;
+		}
+		Library.println("");
+	}
+	
+	void printStrings (string [] strs) {
+		int i = 0;
+		while (i < strs.length) {
+			Library.print(strs[i]);
+			if (i < strs.length - 1) {
+				Library.print(", ");
+			}
+			i = i + 1;
+		}
+		Library.println("");
+	}
+	
+	void printBools (boolean [] bools) {
+		int i = 0;
+		while (i < bools.length) {
+			Library.printb(bools[i]);
+			if (i < bools.length - 1) {
+				Library.print(", ");
+			}
+			i = i + 1;
+		}
+		Library.println("");
+	}
+}

@@ -1,0 +1,3 @@
+class BadArrayDecl {
+	int [10] badArray //size argument not allowed in array declaration
+}

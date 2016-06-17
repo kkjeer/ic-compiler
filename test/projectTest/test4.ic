@@ -1,0 +1,21 @@
+class DeclaringFunctions {
+	void main (string [] args) {
+		<int> => boolean f;
+		<string [], boolean> => Unit g;
+		function h(int i): boolean = {
+			return false;
+		}
+		
+		f = (int x): boolean => {
+			return true;
+		};
+		
+		g = (string [] strs, boolean b): Unit => {
+			Library.println("Hi");
+		};
+		
+		f = h;
+		
+		Library.println("Project test 4: DeclaringFunctions");
+	}
+}

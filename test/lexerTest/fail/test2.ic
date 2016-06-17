@@ -1,0 +1,16 @@
+(*(*bad 
+comment*)*)*)
+("Hello1Bye234"
+123==456;)
+int x = 4;
+string my_String_that_is_GREAT = "hey";
+/*this is a comment*/
+//this is another comment
+if (myBool == true) { return (x == 5); }
+
+"Good string == happiness;"hey"/*this is a comment in a string*/"
+class MyClass extends OtherClass {
+void myMethod (int myParam) {
+return myParam * 2;
+}
+}//end class MyClass

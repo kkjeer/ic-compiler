@@ -1,0 +1,7 @@
+class BadClass extends UndefinedParent {
+
+}
+
+class UndefinedParent {
+
+}

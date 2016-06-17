@@ -1,0 +1,23 @@
+class OperationTest {
+	void testingOperations () {
+		
+		int w = -1;
+		int x = 1 + 2 * w;
+		int y = 3 + (4 - (5/6) * 7 % 2);
+		int z = (2) + (30 + 4) - (21 % (3/2));
+	
+		boolean a = x < y;
+		boolean b = y <= z;
+		boolean c = -z > - (x + y);
+		boolean d = z >= -(z * x);
+		boolean e = x == z - y;
+		boolean f = y != -x + 2 * z;
+		boolean g = a && b;
+		boolean h = b || c;
+		boolean i = a && (g || e);
+		boolean j = !c || !(e && !d);
+		boolean k = h && !i || f;
+	
+	}
+	
+}

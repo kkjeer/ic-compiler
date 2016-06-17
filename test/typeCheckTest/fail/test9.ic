@@ -1,0 +1,16 @@
+//testing illegal array return type overriding
+class Animal {
+	Animal [] getAnimals () {
+		return new Animal[2];
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class Cow extends Animal {
+	Cow [] getAnimals () {
+		return new Cow[2];
+	}
+}

@@ -1,0 +1,20 @@
+//testing illegal array parameter overriding
+class Animal {
+	void doThings (Cow [] cows) {
+		cows[0].moo();
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class Cow extends Animal {
+	void doThings (Animal [] animals) {
+		animals[0].moo(); //bad
+	}
+
+	void moo () {
+		Library.println("Mooooooo");
+	}
+}

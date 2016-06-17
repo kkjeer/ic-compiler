@@ -1,0 +1,11 @@
+class MainWithDifferentArgs {
+	void main (string args) {
+	
+	}
+}
+
+class RealMain {
+	void main (string [] args) {
+	
+	}
+}

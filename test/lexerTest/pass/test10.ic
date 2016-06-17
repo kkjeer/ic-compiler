@@ -1,0 +1,8 @@
+if false{
+    string cat = "dead";
+}
+
+else{
+    string cat = "alive";
+}
+

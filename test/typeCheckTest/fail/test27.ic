@@ -1,0 +1,5 @@
+class BadDiv {
+	void main (string [] args) {
+		string s = 2 / null;
+	}
+}

@@ -1,0 +1,18 @@
+class TestVirtualCallsThis {
+	void main (string [] args) {
+		this.firstMethod();
+		secondMethod(287);
+	}
+	
+	void firstMethod () {
+		int x = 0;
+		int y;
+		y = x + 1;
+	}
+	
+	void secondMethod (int x) {
+		boolean b = true;
+		boolean c;
+		c = !b;
+	}
+}

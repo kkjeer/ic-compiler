@@ -1,0 +1,10 @@
+class ConstFoldSimpleInts {
+	void main (string [] args) {
+		int a = -1;
+		int b = 6 + 3;
+		int c = 2 - 1;
+		int d = 16 * 2;
+		int e = 4 / 2;
+		int f = 8 % 5;
+	}
+}

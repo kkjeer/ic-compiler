@@ -1,0 +1,13 @@
+class SimpleIf {
+	void testIf () {
+		if (true) {
+			
+		} else {
+		
+		}
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

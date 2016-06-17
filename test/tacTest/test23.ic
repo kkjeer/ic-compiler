@@ -1,0 +1,15 @@
+class WhileInIf {
+	void main (string [] args) {
+		if (args.length > 0) {
+			while (true) {
+				Library.println("Hi");
+				continue;
+			}
+		} else {
+			while (false) {
+				Library.println("Bye");
+				break;
+			}
+		}
+	}
+}

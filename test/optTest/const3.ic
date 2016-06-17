@@ -1,0 +1,7 @@
+class ConstFoldSimpleBools {
+	void main (string [] args) {
+		boolean a = !true;
+		boolean b = true && false;
+		boolean c = false || true;
+	}
+}

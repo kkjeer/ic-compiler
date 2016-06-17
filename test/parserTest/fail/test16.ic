@@ -1,0 +1,5 @@
+class MissingSemicolon {
+	void main () {
+		int x = 0
+	}
+}

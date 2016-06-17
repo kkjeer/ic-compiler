@@ -1,0 +1,3 @@
+class BadFields {
+	int x, string s, boolean b;
+}

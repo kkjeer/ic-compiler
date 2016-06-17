@@ -1,0 +1,33 @@
+class MapMethod {
+	void main (string [] args) {
+		int [] mapped;
+		<int> => int f;
+		int [] ints = new int[2];
+		
+		ints[0] = 0;
+		ints[1] = 1;
+		
+		f = (int i): int => {return i + 1;};
+		
+		mapped = map(ints, f);
+		
+		Library.println("Project test 16: MapMethod");
+		Library.print("mapped[0]: ");
+		Library.printi(mapped[0]);
+		Library.println("");
+		Library.print("mapped[1]: ");
+		Library.printi(mapped[1]);
+		Library.println("");
+	}
+	
+	int [] map (int [] arr, <int> => int fcn) {
+		int [] result = new int [2];
+		int i = fcn{arr[0]};
+		int j = fcn{arr[1]};
+		
+		result[0] = i;
+		result[1] = j;
+		
+		return result;
+	}
+}

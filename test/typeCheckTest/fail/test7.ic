@@ -1,0 +1,16 @@
+//testing illegal class return type
+class Animal {
+	Cow getCow () {
+		return new Cow();
+	}
+}
+
+class Cow extends Animal {
+	Animal getCow () {
+		return new Animal();
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

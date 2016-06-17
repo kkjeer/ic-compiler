@@ -1,0 +1,15 @@
+class Parent {
+	void paramSwitch (int x, string s) {
+		Library.println("I take an int and then a string");
+	}
+}
+
+class Switcheroo extends Parent {
+	void paramSwitch (string s, int x) {
+		Library.println("I take a string and then an int");
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

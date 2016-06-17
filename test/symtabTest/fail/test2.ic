@@ -1,0 +1,4 @@
+class MultFieldDecls {
+	int x;
+	int x;
+}

@@ -1,0 +1,11 @@
+class MainWithInt {
+	int main (string [] args) {
+	
+	}
+}
+
+class VoidMain {
+	void main (string [] args) {
+	
+	}
+}

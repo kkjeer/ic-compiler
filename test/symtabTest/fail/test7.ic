@@ -1,0 +1,5 @@
+class MultParameters {
+	void badParams (int x, string x) {
+	
+	}
+}

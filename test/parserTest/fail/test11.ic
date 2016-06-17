@@ -1,0 +1,7 @@
+class BadWhile {
+	void main () {
+		while (x = 0;) { //statement not allowed in while condition - expected expression
+			Library.println("hi");
+		}
+	}
+}

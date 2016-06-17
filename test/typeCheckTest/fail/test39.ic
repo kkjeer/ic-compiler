@@ -1,0 +1,9 @@
+class StoreVoid {
+	void test () {
+		Library.println("I don't return anything");
+	}
+	
+	void main (string [] args) {
+		int x = test();
+	}
+}

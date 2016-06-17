@@ -1,0 +1,26 @@
+class Example {
+    <string> => boolean fcnField;
+    
+    void main (string [] args) {
+    	<int> => boolean f;
+    	boolean cond;
+    	
+    	fcnField = (string s): boolean => {return true;};
+    	
+        f = (int fParam): boolean => {
+            int fLocal = 3;
+            <int> => int g;
+            
+            g = (int gParam): int => {
+                return fLocal + fParam * gParam;
+            };
+            
+            return g{fParam + 10} > 0 && fcnField{args[0]};
+        };
+        
+        cond = f{5};
+        Library.print("cond: ");
+        Library.printb(cond);
+        Library.println("");
+    }
+}

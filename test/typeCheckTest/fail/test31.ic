@@ -1,0 +1,5 @@
+class BadGreaterEq {
+	void main (string [] args) {
+		int geq = true >= new int [][10];
+	}
+}

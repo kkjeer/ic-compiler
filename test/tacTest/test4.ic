@@ -1,0 +1,9 @@
+class BasicArrays {
+	void main (string [] args) {
+		int [] arr = new int[3];
+		int x, y;
+		x = arr[0];
+		y = arr.length;
+		arr[1] = 15;
+	}
+}

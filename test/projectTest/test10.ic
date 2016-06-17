@@ -1,0 +1,49 @@
+class FunctionParam {
+	int arrLength;
+	void main (string [] args) {
+		function f(<int> => int g): Unit = {
+			Library.println("calling f");
+		}
+		
+		function map(int [] arr, int len, <int> => int fcn): int [] = {
+			int i = 5;
+			int [] result;
+			int [] fakeArgs;
+			
+			Library.println("creating result in map");
+			fakeArgs = new int [i];
+			result = new int [i];
+			
+			//while (i < 5) {
+				//result[i] = fcn{arr[i]};
+				//i = i + 1;
+			//}
+			
+			return result;
+		}
+		int [] ints;
+		int [] mapped;
+		int len;
+		int i = 0;
+		
+		arrLength = 2;
+		f{(int n): int => {return 0;}};
+		
+		len = 2;
+		ints = new int[2];
+		
+		ints[0] = 3;
+		len = ints.length; //creates segfault
+		
+		mapped = map{ints, 1, (int j): int => {return 2;}};
+		Library.printi(mapped[0]); //creates segfault
+		
+		while (i < arrLength) {
+			//Library.printi(mapped[i]); //creates segfault
+			Library.print(" ");
+			i = i + 1;
+		}
+		Library.println("");
+		
+	}
+}

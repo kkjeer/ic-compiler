@@ -1,0 +1,16 @@
+class TestContinue {
+	void main (string [] args) {
+		int x = 2;
+		int y;
+		boolean condition;
+		y = x - 5;
+		condition = (x + y * 3) <= 5;
+		while (condition) {
+			if (condition || true) {
+				continue;
+			} else {
+				break;
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+class SimpleReturn {
+	int returnsAnInt () {
+		return 0;
+	}
+	
+	string returnsAString () {
+		return "Hi";
+	}
+	
+	boolean returnsABoolean () {
+		return true;
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

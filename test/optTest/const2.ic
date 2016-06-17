@@ -1,0 +1,12 @@
+class ConstFoldSimpleComparisons {
+	void main (string [] args) {
+		boolean a = 7 == 7;
+		boolean b = 1 != 2;
+		boolean c = "Hi" == "Bye";
+		boolean d = "Hello" != "World";
+		boolean e = 2 > 4;
+		boolean f = 5 >= 3;
+		boolean g = 78 < 100;
+		boolean h = 34 <= 29;
+	}
+}

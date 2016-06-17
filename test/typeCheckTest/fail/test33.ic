@@ -1,0 +1,5 @@
+class BadAnd {
+	void main (string [] args) {
+		boolean b = true && null;
+	}
+}

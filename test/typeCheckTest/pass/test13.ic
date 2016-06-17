@@ -1,0 +1,7 @@
+class TestBreak {
+	void main (string [] args) {
+		while (true) {
+			break;
+		}
+	}
+}

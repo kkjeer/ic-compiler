@@ -1,0 +1,30 @@
+class ReallyNested {
+	int nestedField;
+	
+	void main (string [] args) {
+		function f(boolean b): string = {
+			int fLocal = 5;
+			
+			function gInF(int x, int y): int = {
+			
+				function hInG(int hInt): int = {
+					return hInt + x - y;
+				}
+				
+				return x + y + nestedField;
+			}
+			
+			gInF = (int i, int j): int => {
+				return fLocal * i + j;
+			};
+			
+			Library.printi(fLocal);
+			return "Hi f";
+		}
+		string str;
+		
+		Library.println("Project test 9: ReallyNested");
+		str = f{true};
+		Library.println(str);
+	}
+}

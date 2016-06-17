@@ -1,0 +1,311 @@
+class GroupInt {
+	int [] elements;
+	<int, int> => int operator;
+	string name;
+	int identity;
+	boolean hasIdentity;
+	int [] inverses;
+	boolean [] hasInverse;
+	
+	/*
+	init()
+	Populates the group with the given elements and operator
+	*/
+	void init (int [] elts, <int, int> => int op) {
+		int i = 0;
+		elements = elts;
+		operator = op;
+		name = "Default Group of Ints";
+		hasIdentity = false;
+		inverses = new int [elts.length];
+		hasInverse = new boolean [elts.length];
+		
+		while (i < hasInverse.length) {
+			hasInverse[i] = true;
+			i = i + 1;
+		}
+	}
+	
+	/*
+	setName()
+	Sets the name (description) of the group
+	*/
+	void setName (string n) {
+		name = n;
+	}
+	
+	/*
+	printSelf()
+	Prints a string representation of the group name and elements
+	*/
+	void printSelf () {
+		Library.println("");
+		Library.println("***Group: " + name + "***");
+		Library.print("Elements: ");
+		printInts(elements);
+		printInt("Identity: ", identity);
+		Library.print("Inverses: ");
+		printInts(inverses);
+		Library.println("");
+	}
+	
+	/*
+	isGroup()
+	Returns true iff the elements and operator constitute a group, by testing the four group properties:
+		closure, associativity, existence of identity, and existence of inverses for all elements
+	*/
+	boolean isGroup () {
+		boolean closed = isClosed();
+		boolean assoc = isAssociative();
+		boolean allInverses;
+		
+		identity = getIdentity();
+		allInverses = checkInverses();
+		
+		return closed && assoc && hasIdentity && allInverses;
+	}
+	
+	/*
+	isClosed()
+	Returns true iff the group is closed under its operator
+	*/
+	boolean isClosed () {
+		int i = 0, j = 0;
+		
+		while (i < elements.length - 1) {
+			j = i + 1;
+			while (j < elements.length) {
+				int eltOp = operator{elements[i], elements[j]};
+				if (!isElement(eltOp)) {
+					Library.print("Error: group " + name + " is not closed with elements ");
+					Library.printi(elements[i]);
+					Library.print(" and ");
+					Library.printi(elements[j]);
+					Library.println("");
+					return false;
+				}
+				j = j + 1;
+			}
+			i = i + 1;
+		}
+		
+		return true;
+	}
+	
+	/*
+	isAssociative()
+	Returns true iff the group is associative
+	*/
+	boolean isAssociative () {
+		int i = 0, j = 0, k = 0;
+		
+		while (i < elements.length - 2) {
+			j = i + 1;
+			while (j < elements.length - 1) {
+				k = j + 1;
+				while (k < elements.length) {
+					int elt0 = operator{operator{elements[i], elements[j]}, elements[k]};
+					int elt1 = operator{elements[i], operator{elements[j], elements[k]}};
+					if (elt0 != elt1) {
+						Library.println("Error: group " + name + " is not associative.");
+						return false;
+					}
+					k = k + 1;
+				}
+				j = j + 1;
+			}
+			i = i + 1;
+		}
+		
+		return true;
+	}
+	
+	/*
+	getIdentity()
+	Returns the identity element, or null if none exists
+	*/
+	int getIdentity () {
+		int i = 0, j = 0;
+		
+		while (i < elements.length) {
+			while (j < elements.length) {
+				if (operator{elements[i], elements[i]} == elements[i]) {
+					identity = elements[i];
+					hasIdentity = true;
+					return elements[i];
+				}
+				j = j + 1;
+			}
+			i = i + 1;
+		}
+		
+		Library.println("Error: no identity element."); 
+		return null;
+	}
+	
+	/*
+	checkInverses()
+	Returns true iff every element in elements has an inverse
+	*/
+	boolean checkInverses () {
+		int i = 0;
+		int inverse;
+		
+		while (i < elements.length) {
+			inverse = getInverse(elements[i], i);
+			if (!hasInverse[i]) {
+				Library.print("Error: element ");
+				Library.printi(elements[i]);
+				Library.print(" has no inverse.");
+				Library.println("");
+				return false;
+			}
+			i = i + 1;
+		}
+		
+		return true;
+	}
+	
+	/*
+	getInverse()
+	Returns the inverse of the given element at the given index, or null if none exists
+	*/
+	int getInverse (int elt, int index) {	
+		int i = 0;
+			
+		//no identity => no inverse
+		if (!hasIdentity) {
+			return null;
+		}
+		
+		//search for an inverse
+		while (i < elements.length) {
+			if (operator{elements[i], elt} == identity && operator{elt, elements[i]} == identity) {
+				inverses[index] = elements[i];
+				return elements[i];
+			}
+			i = i + 1;
+		}
+		
+		hasInverse[index] = false;
+		return null;
+	}
+	
+	/*
+	isElement()
+	Returns true iff the given integer is in the elements array
+	*/
+	boolean isElement (int elt) {
+		int i = 0;
+		while (i < elements.length) {
+			if (elements[i] == elt) {
+				return true;
+			}
+			i = i + 1;
+		}
+		return false;
+	}
+	
+	/*
+	printInt()
+	Helper method to print one integer, preceded by a string message
+	*/
+	void printInt (string message, int i) {
+		Library.print(message);
+		Library.printi(i);
+		Library.println("");
+	}
+	
+	/*
+	printInts()
+	Helper method to print an array of integers
+	*/
+	void printInts (int [] ints) {
+		int i = 0;
+		while (i < ints.length) {
+			Library.printi(ints[i]);
+			if (i < ints.length - 1) {
+				Library.print(", ");
+			}
+			i = i + 1;
+		}
+		Library.println("");
+	}
+}
+
+class GroupIntDriver {
+	/*
+	main()
+	Creates and tests ZnZ groups (expected to pass) and a random "group" (expected to fail)
+	*/
+	void main (string [] args) {
+		testZnZ(5, "5");
+		testZnZ(8, "8");
+		testRandom(6, "6");
+	}
+	
+	/*
+	testOneGroup()
+	Determines whether the given group passes the group tests
+	Prints corresponding messages
+	*/
+	void testOneGroup (GroupInt group) {
+		Library.println("Testing group " + group.name);
+		if (!group.isGroup()) {
+			Library.print("Error: " + group.name + " is not a group. Group Elements: ");
+			group.printInts(group.elements);
+			Library.println("");
+			return;
+		}
+		Library.println(group.name + " is a group!");
+		group.printSelf();
+	}
+	
+	/*
+	testZnZ()
+	Creates and tests a Z/nZ group of the given size
+	Expected to pass the group tests
+	*/
+	void testZnZ (int n, string nName) {
+		GroupInt znz;
+		function znzOp (int x, int y): int = {
+			return (x + y) % n;
+		}
+		int [] znzElts = new int [n];
+		int i = 0;
+		
+		while (i < n) {
+			znzElts[i] = i;
+			i = i + 1;
+		}
+		
+		znz = new GroupInt();
+		znz.init(znzElts, znzOp);
+		znz.setName("Z/" + nName + "Z");
+		testOneGroup(znz);
+	}
+	
+	/*
+	testRandom()
+	Creates and tests a non-group from an array of random integers and a random operation
+	Expected to fail the group tests
+	*/
+	void testRandom (int n, string nName) {
+		GroupInt random;
+		function randOp (int x, int y): int = {
+			return Library.random(x + y + 1);
+		}
+		int [] randElts = new int [n];
+		int i = 0;
+		
+		while (i < n) {
+			randElts[i] = Library.random(n + 1);
+			i = i + 1;
+		}
+		
+		random = new GroupInt();
+		random.init(randElts, randOp);
+		random.setName("Random size " + nName);
+		testOneGroup(random);
+	}
+}

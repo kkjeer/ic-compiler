@@ -1,0 +1,5 @@
+class NoMain {
+	int someMethod () {
+		return 0;
+	}
+}

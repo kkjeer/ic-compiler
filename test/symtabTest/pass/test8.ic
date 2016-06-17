@@ -1,0 +1,17 @@
+class Parent {
+	void testMethod () {
+	
+	}
+}
+
+class Child extends Parent {
+	void testMethod () {
+	
+	}
+}
+
+class Grandchild extends Child {
+	void testMethod () {
+	
+	}
+}

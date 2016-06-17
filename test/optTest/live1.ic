@@ -1,0 +1,10 @@
+class SimpleLiveTest {
+	void main (string [] args) {
+		int x, y;
+		
+		x = 0;
+		y = x;
+		
+		Library.printi(y);
+	}
+}

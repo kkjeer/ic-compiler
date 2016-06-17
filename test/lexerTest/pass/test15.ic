@@ -1,0 +1,68 @@
+class TestClass extends ParentClass {
+	private int x;
+	private string str;
+	private boolean cond;
+	private int[] myInts;
+	
+	public TestClass (int x, string str, boolean cond) {
+		this.x = x;
+		this.str = str;
+		this.cond = cond;
+		myInts = new int[5];
+	}
+	
+	(*
+		(*These are getter and setter methods.*)
+		//Not all getters and setters are defined.
+	*)
+	
+	public void setX (int diffX) {
+		this.x = diffX;
+	}
+	
+	public string getStr () {
+		return this.str;
+	}
+	
+	public void doMath (int y, int z) {
+		int w = 3 + y - 2 * z;
+		this.x = (this.x % 2) * (y/z);
+	}
+	
+	public void checkCondition () {
+		if (!cond || 2 < 3) {
+			System.out.println("I am in the if block!");
+			continue;
+		} else {
+			int u = 0;
+			while (u <= 3) {
+				print(u);
+				u = u + 1;
+			}
+		}
+	}
+	
+	public int getArrayElt (int index) {
+		if (index >= 0 && index < myInts.length) {
+			Library.println("Good index!");
+			return myInts[index];
+		}
+		if (index >= myInts.length || index > 1000) {
+			return 0;
+		}
+		if (index != 42) {
+			return 55 * (2 + 3) % 4;
+		}
+		return null;
+	}
+	
+	public static void main (string [] args) {
+		TestClass myTestClass = new TestClass(2, "hi", true);
+		myTestClass.doMath(3, 7);
+		myTestClass.checkCondition();
+		int elt = myClass.getArrayElt(1);
+		myTestClass.setX(6);
+		string message = myTestClass.getStr();
+	}
+	
+} //end class TestClass

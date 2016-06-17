@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{mathpartir}
+\usepackage{amsfonts}
+\newcommand{\Z}{\mathbb{Z}}
+\hypersetup{urlcolor=blue, colorlinks=true}
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand\arraystretch{1.5}
+
+\title{CS 301 Final Paper\\First-Class Functions and Closures in IC}
+\author{Katherine Kjeer}
+\date{May 16, 2016}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\label{introduction}
+This paper describes an extension to the IC compiler: the addition of first-class functions and closures to the IC language and the support of these features in the IC compiler. We discuss the background of first-class functions and closures and the motivations for adding them to IC. We then give an overview of the design and implementation of these features in the IC compiler. Finally, we describe the evaluation process and discuss the results of evaluating the compiler extension.
+
+\section{Background}
+\label{background}
+First-class functions and closures are important concepts in functional programming \cite{learningscala}. In addition, they allow programs to have a greater degree of flexibility and abstraction - a function that takes another function as an argument allows the outer function to delegate specific behavior to the inner function \cite{practicalclojure}. Closures are represented with an environment defining the variables that the closure can access, together with the code of the underlying function.
+
+\section{Design}
+\label{design}
+\textbf{Syntax}\\
+A function $f$ can be declared as follows:\\
+\begin{verbatim}
+    function f(T_0 e_0, ..., T_n e_n): T_r = {
+        //body of f
+    }
+\end{verbatim}
+Anonymous functions can be defined as follows:\\
+\begin{verbatim}
+    (T_0 e_0, ..., T_n e_n): T_r => {
+        //body of anonymous function
+    }
+\end{verbatim}
+Functions can be declared and initialized using function types:
+\begin{verbatim}
+    <int, int> => string f;
+    f = (int x, int y): string => {
+        //body of f
+    }
+\end{verbatim}
+Methods and higher-order functions can take functions as arguments: for example,
+\begin{verbatim}
+    void m(<int, int> => string f) {
+        string message = f(1, 2);
+    }
+\end{verbatim}
+\textbf{Function Types}\\
+Function types consist of the product of their argument types, combined with their return type:
+\begin{equation}
+    \inferrule{ }{E \vdash (e_0: T_0, e_1: T_1, ..., e_n: T_n) \rightarrow e_r: T_r\ \textbf{:}\ T_0 \times T_1 \times ... \times T_n \rightarrow T_r}
+\end{equation}\\
+\textbf{High-Level Implementation Process}
+\begin{enumerate}
+    \item Parse IC programs with the additional syntax for first-class function types, expressions, and calls, and resolve and type-check the resulting AST
+    \item Transform the AST into a new AST where each function type is converted to a template class type, each function expression is converted to a closure class instance, and each function call is converted to a call to the closure instance's \texttt{call} method
+    \item Resolve, type-check, optimize, and generate code for the transformed AST
+\end{enumerate}
+
+\section{Implementation}
+\label{implementation}
+The source-to-source AST translation is done by traversing the AST, creating template and closure classes, and replacing function types with template class types, function expressions with closure class instances, and function calls calls to the closure's \texttt{create} method. The translation returns a new AST that is used in the remainder of the compiler.\\\\
+\textbf{Template Classes}\\
+For each function type in the original IC program, a template class is generated for the type. The template class contains no fields and no \texttt{create} method, but it does contain a minimal \texttt{call} method, which returns the default value for the function's return type (\texttt{0, true}, ``", or \texttt{null}, or no return value for functions with a return type of \texttt{Unit}). Each function type is then replaced by the corresponding template class type. For example, the following declaration:
+\begin{verbatim}
+    <int, boolean> => string f;
+\end{verbatim}
+would be replaced by:
+\begin{verbatim}
+    PARAMS__int_boolean__RETURN__string_Template f;
+\end{verbatim}
+\textbf{Closure Classes}\\
+For each function expression in the original IC program, a closure class is created. The closure class' fields contain the fields of the enclosing class, the parameters to the enclosing method, the local variables of the enclosing method that are in scope at the function expression, the parameters to any enclosing functions, and the local variables of any enclosing functions that are in scope at the function expression. Each closure class extends the template class that corresponds to its function type. For example, a function expression with type \texttt{<int> => boolean} extends the template class \texttt{PARAMS\_\_int\_\_RETURN\_\_boolean\_Template}, and overrides the template class' \texttt{call} method. The overriden \texttt{call} method takes the same parameters as the original function, and when called, executes the body of the original function. In addition, each closure class has a \texttt{create} method, which takes as arguments all the necessary variables to set the fields of the closure class (fields, parameters, and local variables of the enclosing class, method, and functions), sets the closure's fields, and returns a new closure instance. Each function expression in the original program is replaced by a call to the appropriate closure class' \texttt{create} method.\\\\
+\textbf{Function Calls}\\
+For each function call in the orginal IC program, an instance of the appropriate closure class is made using the closure class' \texttt{create} method, and a virtual call is made to the closure instance's \texttt{call} method, with the same parameters that were passed to the original function call. For example, the following function call:
+\begin{verbatim}
+    f{1, true};
+\end{verbatim}
+would be replaced by:
+\begin{verbatim}
+    new f_Closure().create{...}.call{1, true};
+\end{verbatim}
+where the arguments to \texttt{create} are the fields, parameters, and local variables of \texttt{f}'s enclosing class, method, and functions.
+
+\section{Evaluation}
+\label{evaluation}
+The extension adds a language feature to IC, and does not focus on performance. Thus, the evaluation metrics are the accuracy of the translated programs and the ease of writing IC programs with first-class functions. The extension is evaluated by writing IC programs that use first-class functions and closures, and comparing those programs' output to their expected behavior. The test programs used to evaluate the extension are located in the test/projectTest folder of the compiler repository (\url{https://goo.gl/Kh6Yho}). The folder contains a variety of small programs to test parts of the language feature (function declaration and initialization, passing functions as parameters, calling functions, etc.). In addition, several larger programs test the feature in a more complex setting:
+\begin{enumerate}
+    \item \textbf{Map and Filter:} This program implements the standard \texttt{map} and \texttt{filter} functions separately for \texttt{int}, \texttt{string}, and \texttt{boolean} arrays (since IC does not have a generic type system). The program tests the \texttt{map} and \texttt{filter} functions on all three types of arrays.
+    \item \textbf{Finite Groups:} This program represents finite (integer) groups as an array of integers and a function \texttt{<int, int> => int} operator. The \texttt{GroupInt} methods determine whether the provided array and function form a group by checking the four group axioms. The \texttt{GroupIntDriver} class creates and tests a representation of the groups $\Z/5\Z$ and $\Z/8\Z$, and the non-group consisting of an array of random integers and a operation that returns a random integer. (This representation can easily be reproduced for \texttt{string} groups, etc.).
+\end{enumerate}
+Each test program successfully type-checks and is translated to a reasonable AST and TAC representation without apparent errors. The test programs also run and produce the expected output for each program. For the larger programs \textbf{Map and Filter} and \textbf{Finite Groups}, the implementation could be expressed naturally using the first-class function language feature.
+
+\section{Conclusion}
+\label{conclusion}
+This extension added first-class functions and closures to IC using closure conversion in a source-to-source translation. The implementation allows non-trivial programs to be written using first-class functions, and the programs run and behave as expected. There are a few areas for future work:
+\begin{enumerate}
+    \item With the current implementation, first-class functions do not have access to the methods of their enclosing class. For example, if a function \texttt{f} is defined in class \texttt{A}, and class \texttt{A} also defines method \texttt{m}, then \texttt{m} cannot be called within the body of \texttt{f}.
+    \item Several programs that use first-class functions generate segfaults when run after any optimizations (even when the optimizations make no changes to the TAC list). The optimizer test programs all run correctly, as do numerous other test cases not designed to test the optimizer.
+\end{enumerate}
+
+\medskip
+ 
+\bibliographystyle{unsrt}
+\bibliography{sources}
+
+\end{document}

@@ -1,0 +1,37 @@
+class ArrayClass {
+	int[] ints1, ints2;
+	int[][] intMatrix;
+	
+	string [] strs;
+	string [] [] [] three_d_strings;
+	
+	boolean myCond;
+	boolean [] [] boolMatrix;
+	
+	//tests while loops, including break and continue
+	int whileMethod (boolean test, int [] intParams) {
+		int index1 = 0, index2 = 0, index3 = intParams.length - 1;
+		int sum = 0;
+		while (index1 < this.ints1.length) {
+			Library.printi(index1);
+			sum = sum + this.ints1[index1];
+			while (index2 < this.ints2.length) {
+				while (index3 >= 0) {
+					if (test) {
+						sum = sum * intParams[index3];
+						break;
+					} else if (intParams[index3] != 0) {
+						sum = sum / intParams[index3];
+						continue;
+					}
+					index3 = index3 - 1;
+				}
+				index2 = index2 + 1;
+			}
+			index1 = index1 + 1;
+		}
+		return sum;
+	}
+	
+}
+			

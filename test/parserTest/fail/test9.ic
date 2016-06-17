@@ -1,0 +1,9 @@
+class BadVirtualCall {
+	void doThings (string s) {
+		Library.println(s);
+	}
+	
+	void main () {
+		this.doThings(string s); //type identifier not allowed in method call
+	}	
+}

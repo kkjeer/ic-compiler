@@ -1,0 +1,27 @@
+class LibCalls {
+	void main (string [] args) {
+		//testing read functions
+		int readInt = Library.readi();
+		string readLine = Library.readln();
+		boolean endOfFile = Library.eof();
+		
+		//testing conversion functions
+		int sToInt = Library.stoi("Hi", 1);
+		string xToString = Library.itos(10);
+		int [] tToArray = Library.stoa("Bye");
+		string intsToString = Library.atos(new int [2]);
+		
+		//testing random, time
+		int rand = Library.random(100);
+		int time = Library.time();
+		
+		//testing print functions
+		Library.println("Hello World");
+		Library.print("Goodbye World");
+		Library.printi(20);
+		Library.printb(true);
+		
+		//testing exit
+		Library.exit(0);
+	}
+}

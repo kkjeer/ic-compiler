@@ -1,0 +1,26 @@
+class TestReturns {
+	void voidMethod () {
+		if (true) {
+			return;
+		}
+	}
+	
+	int intMethod () {
+		return 0;
+	}
+	
+	string stringMethod () {
+		return "Hello";
+	}
+	
+	boolean boolMethod () {
+		return false;
+	}
+	
+	void main (string [] args) {
+		voidMethod();
+		intMethod();
+		stringMethod();
+		boolMethod();
+	}
+}

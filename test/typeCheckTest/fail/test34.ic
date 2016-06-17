@@ -1,0 +1,5 @@
+class BadOr {
+	void main (string [] args) {
+		boolean b = "hi" || 2;
+	}
+}

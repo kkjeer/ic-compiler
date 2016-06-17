@@ -1,0 +1,11 @@
+class BadContinue {
+	void main (string [] args) {
+		boolean condition = (1 + 2) > 1;
+		while (condition) {
+			break;
+		}
+		if (!condition) {
+			continue;
+		}
+	}
+}

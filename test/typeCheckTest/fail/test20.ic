@@ -1,0 +1,9 @@
+class BadArrayCreation {
+	void bad () {
+		int [] x = new int[true];
+	}
+	
+	void main (string [] args) {	
+		bad();
+	}
+}

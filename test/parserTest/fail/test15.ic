@@ -1,0 +1,5 @@
+class BadBinop2 {
+	void main () {
+		boolean b = && true || false;
+	}
+}

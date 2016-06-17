@@ -1,0 +1,16 @@
+class LiveReturn {
+	void main (string [] args) {
+		string dead = "Not Live";
+		Library.println("Main");
+	}
+	
+	int returnInt () {
+		int y;
+		int x;
+		
+		y = 1;
+		x = 0;
+		
+		return x;
+	}
+}

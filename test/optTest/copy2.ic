@@ -1,0 +1,19 @@
+class CopyArrays {
+	void main (string [] args) {
+		int [] a;
+		int x, y, z, w;
+		
+		x = 7;
+		a = new int [x];
+		
+		y = 5;
+		z = 2;
+		a[y] = z;
+		
+		w = a.length;
+		z = a[3];
+		
+		Library.printi(w);
+		Library.printi(z);
+	}
+}

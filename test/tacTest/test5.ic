@@ -1,0 +1,22 @@
+class Test {
+	int x;
+	string s;
+	boolean b;
+}
+
+class BasicObjects {
+	void main (string [] args) {
+		Test myTest = new Test();
+		int myInt;
+		string myString;
+		boolean myBool;
+		
+		myInt = myTest.x;
+		myString = myTest.s;
+		myBool = myTest.b;
+		
+		myTest.x = 178;
+		myTest.s = "Hello";
+		myTest.b = true; 
+	}
+}

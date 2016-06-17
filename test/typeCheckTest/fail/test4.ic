@@ -1,0 +1,15 @@
+class Parent {
+	void badParams () {
+		Library.println("I take no arguments");
+	}
+}
+
+class TooManyParams extends Parent {
+	void badParams (int x) {
+		Library.println("I take one argument");
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

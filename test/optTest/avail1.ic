@@ -1,0 +1,10 @@
+class VerySimpleAvail {
+	void main (string [] args) {
+		int x, y;
+		
+		x = 2 + 1;
+		y = 2 + 1;
+		
+		Library.printi(y);
+	}
+}

@@ -1,0 +1,7 @@
+class NestedMethods () {
+	void outerMethod () {
+		void innerMethod () {
+		
+		}
+	}
+}

@@ -1,0 +1,5 @@
+class BadMod {
+	void main (string [] args) {
+		int [] x = null % 4;
+	}
+}

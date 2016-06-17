@@ -1,0 +1,60 @@
+class TestFunctionParams {
+	void main (string [] args) {
+		function f (boolean b): Unit = {
+			boolean fCond = !b;
+			Library.print("b: ");
+			Library.printb(b);
+			Library.println("");
+		}
+		
+		function g (int x): Unit = {
+			int gInt = x + 1;
+			Library.print("x: ");
+			Library.printi(x);
+			Library.println("");
+		}
+		
+		function h (string s): Unit = {
+			//string hString = s; //causes segfault
+			Library.print("s: ");
+			//Library.print(s); //causes segfault
+			Library.println("");
+		}
+		
+		function p (boolean [] conds): Unit = {
+			boolean [] pConds = conds;
+			int condsLen = conds.length;
+			Library.print("conds[0]: ");
+			Library.printb(conds[0]);
+			Library.println("");
+			Library.print("pConds[0]: ");
+			Library.printb(pConds[0]);
+			Library.println("");
+			Library.print("condsLen: ");
+			Library.printi(condsLen); //prints some huge number
+			Library.println("");
+		}
+		
+		function q (int [] arr): Unit = {
+			int len = arr.length;
+			Library.print("len: ");
+			Library.printi(len);
+			Library.println(""); //prints some huge number
+		}
+		
+		boolean [] bs = new boolean [2];
+		int [] ints = new int [1];
+		
+		Library.println("Project test 13: TestFunctionParams");
+		f{true};
+		g{4};
+		h{"hi"};
+		
+		bs[0] = true;
+		bs[1] = false;
+		p{bs};
+		
+		ints[0] = 7;
+		q{ints};
+	}
+}

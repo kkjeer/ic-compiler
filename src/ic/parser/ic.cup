@@ -1,0 +1,248 @@
+package ic.parser;
+
+import java_cup.runtime.*;
+import scala.Option;
+import scala.collection.*;
+import scala.collection.immutable.*;
+import ic.ast.*;
+import ic.error.*;
+
+action code {:
+
+/* Any extra data structures used by your production actions */
+
+/* Helper methods used in your actions. */
+
+:}  
+
+parser code {: 
+
+/* Change this to implement syntax error handling in a better way. */
+
+public void syntax_error(Symbol cur_token) {
+	throw new SyntaxError(cur_token.left, cur_token.toString());
+}
+
+:}
+
+/* Terminals */
+terminal  CLASS, RETURN, THIS, IF, EXTENDS, NEW, VOID, ELSE, LENGTH;
+terminal  INT, WHILE, BOOLEAN, BREAK, STRING, CONTINUE, NULL, OBRACE;
+terminal  CBRACE, OPAREN, CPAREN, COMMA, SEMI, OBRACKET, CBRACKET, EQ, COLON;
+terminal  DOT, PLUS, MINUS, MULT, DIV, LIBRARY;
+terminal  MOD, AND, OR, NOT, LT, LE, GT, GE, EQEQ, NE;
+terminal  FUNCTION, UNIT;
+terminal  String ID;
+terminal  String CLS_ID; 
+terminal  Integer INT_LIT; 
+terminal  String STRING_LIT; 
+terminal  Boolean BOOL_LIT;
+
+/* Nonterminals */
+nonterminal Program Program;
+nonterminal List<ClassDecl>	ClassDeclStar;
+nonterminal ClassDecl ClassDecl;
+nonterminal List<FMDecl> FieldOrMethodStar;
+nonterminal List<FieldDecl> FieldDecl;
+nonterminal List<String> FieldIdsStar;
+nonterminal MethodDecl MethodDecl;
+nonterminal List<VarDecl> Formals;
+nonterminal List<VarDecl> FormalIdsStar;
+nonterminal Type Type;
+nonterminal Type ReturnType;
+nonterminal List<Type> ParamTypes;
+nonterminal List<Type> ParamTypesStar;
+nonterminal BlockStmt Block;
+nonterminal List<VarDecl> VarDeclStar;
+nonterminal List<Stmt> StmtStar;
+nonterminal List<VarDecl> VarDecl;
+nonterminal List<AssignVar> AssignStar;
+nonterminal Stmt Stmt;
+nonterminal IfStmt IfElse;
+nonterminal Expr Expr;
+nonterminal FunctionExpr FunctionExpr;
+nonterminal Call Call;
+nonterminal LibCall LibCall;
+nonterminal VirtualCall VirtualCall;
+nonterminal FunctionCall FunctionCall;
+nonterminal AnonCall AnonCall;
+nonterminal List<Expr> OptionalParams;
+nonterminal List<Expr> ExprsStar;
+nonterminal Location Location;
+nonterminal Unop Unop;
+nonterminal Expr Literal;
+
+/* Precedence */
+precedence left ELSE;
+precedence left AND, OR, NOT;
+precedence left LT, LE, GT, GE, EQEQ, NE;
+precedence left PLUS, MINUS;
+precedence left MULT, DIV, MOD;
+precedence left OBRACKET, DOT;
+
+/* The grammar */
+Program ::= ClassDeclStar:list {: RESULT = new Program(list, listleft); :}
+	    ;
+	    
+ClassDeclStar ::= ClassDeclStar:list ClassDecl: decl	{: RESULT = ParserUtil.append(list, decl); :}
+				| {: RESULT = ParserUtil.empty(); :}
+				;
+	          
+ClassDecl ::= CLASS CLS_ID:classId OBRACE FieldOrMethodStar:list CBRACE	
+					{: RESULT = ParserUtil.createClassDecl(classId, ParserUtil.none(), list, classIdleft); :}
+			| CLASS CLS_ID:classId EXTENDS CLS_ID:extendsId OBRACE FieldOrMethodStar:list CBRACE	
+					{: RESULT = ParserUtil.createClassDecl(classId, ParserUtil.some(extendsId), list, classIdleft); :}
+	       ;	
+	       
+FieldOrMethodStar ::= FieldOrMethodStar:list FieldDecl:decls {: RESULT = ParserUtil.addFieldDecls(list, decls); /*RESULT = ParserUtil.append(list, decl);*/ :}
+				| FieldOrMethodStar:list MethodDecl:decl	{: RESULT = ParserUtil.append(list, decl); :} 
+				| {: RESULT = ParserUtil.empty(); :}
+				;    
+	       
+FieldDecl ::= Type:t ID:val FieldIdsStar:list SEMI	{: RESULT = ParserUtil.createFieldDeclList(t, val, list, tleft); :}
+			;
+			
+FieldIdsStar ::= FieldIdsStar:list COMMA ID:val	{: RESULT = ParserUtil.append(list, val); :}
+					|	{: RESULT = ParserUtil.empty(); :}
+					;
+					
+MethodDecl ::= Type:t ID:val OPAREN Formals:f CPAREN Block:b	{: RESULT = new FruitfulMethod(t, val, f, b, tleft); :}
+			| VOID ID:val OPAREN Formals:f CPAREN Block:b	{: RESULT = new VoidMethod(val, f, b, valleft); :}
+			;
+						
+Formals ::= Type:t ID:val FormalIdsStar:list	{: RESULT = ParserUtil.cons(new VarDecl(t, val, ParserUtil.none(), tleft), list); :}
+		|	{: RESULT = ParserUtil.empty(); :}
+		;
+		
+FormalIdsStar ::= FormalIdsStar:list COMMA Type:t ID:val {: RESULT = ParserUtil.append(list, new VarDecl(t, val, ParserUtil.none(), tleft)); :}
+				|	{: RESULT = ParserUtil.empty(); :}
+				;
+						
+Type ::= INT:keyword			{: RESULT = new IntType(0); :}
+		| BOOLEAN:keyword		{: RESULT = new BoolType(0); :}
+		| STRING:keyword		{: RESULT = new StringType(0); :}
+		| CLS_ID:val	{: RESULT = new ClassType(val, 0); :}
+		| Type:t OBRACKET CBRACKET	{: RESULT = new ArrayType(t, 0); :}
+		| LT ParamTypes:pTypes GT EQ GT ReturnType:t {: RESULT = new FunctionType(t, pTypes, 0); :}
+		; 
+		
+ReturnType ::= Type:t		{: RESULT = t; :} 
+			| UNIT:keyword	{: RESULT = new VoidType(keywordleft); :}
+			;
+		
+ParamTypes ::= Type:type ParamTypesStar:list {: RESULT = ParserUtil.cons(type, list); :}
+			| {: RESULT = ParserUtil.empty(); :}
+			;
+			
+ParamTypesStar ::= ParamTypesStar:list COMMA Type:type {: RESULT = ParserUtil.append(list, type); :}
+			| {: RESULT = ParserUtil.empty(); :}
+			;
+		
+Block ::= OBRACE VarDeclStar:vars StmtStar:stmts CBRACE	{: RESULT = new BlockStmt(vars, stmts, varsleft); :}
+		;
+
+VarDeclStar ::= VarDeclStar:list VarDecl:decls	{: RESULT = ParserUtil.addVarDecls(list, decls); :} 
+				|	{: RESULT = ParserUtil.empty(); :}
+				;
+				
+StmtStar ::= StmtStar:list Stmt:stmt	{: RESULT = ParserUtil.append(list, stmt); :}
+			|	{: RESULT = ParserUtil.empty(); :}
+			;
+				
+VarDecl ::= Type:t ID:val EQ Expr:e AssignStar:list SEMI {: RESULT = ParserUtil.createVarDeclList(t, val, ParserUtil.some(e), list, tleft); :}
+			| Type:t ID:val AssignStar:list SEMI {: RESULT = ParserUtil.createVarDeclList(t, val, ParserUtil.none(), list, tleft); :}
+			| FUNCTION ID:val OPAREN Formals:f CPAREN COLON ReturnType:t EQ Block:block	{: RESULT = ParserUtil.createFunctionDeclList(t, val, f, block, valleft); :}
+			;
+			
+AssignStar ::= AssignStar:list COMMA ID:val	{: RESULT = ParserUtil.append(list, new AssignVar(val, ParserUtil.none(), valleft)); :}
+			| AssignStar:list COMMA ID:val EQ Expr:e {: RESULT = ParserUtil.append(list, new AssignVar(val, ParserUtil.some(e), valleft)); :}
+			| {: RESULT = ParserUtil.empty(); :}
+			;
+				
+Stmt ::= Location:loc EQ Expr:expr SEMI:semi	{: RESULT = new LocStmt(loc, expr, semileft); :}
+		| Call:call SEMI:semi		{: RESULT = new CallStmt(call, semileft); :}
+		| RETURN:ret SEMI			{: RESULT = new ReturnStmt(ParserUtil.none(), retleft); :}
+		| RETURN:ret Expr:expr SEMI	{: RESULT = new ReturnStmt(ParserUtil.some(expr), retleft); :}
+		| IfElse: ifStmt	{: RESULT = ifStmt; :}
+		| WHILE:w OPAREN Expr:expr CPAREN Stmt:stmt	{: RESULT = new WhileStmt(expr, stmt, wleft); :}
+		| BREAK:br SEMI		{: RESULT = new BreakStmt(brleft); :}
+		| CONTINUE:con SEMI		{: RESULT = new ContinueStmt(conleft); :}
+		| Block:blockStmt	{: RESULT = blockStmt; :}
+		//| FUNCTION ID:val OPAREN Formals:f CPAREN COLON ReturnType:t EQ Block:block	{: RESULT = new FunctionStmt(val, f, t, block, valleft); :}
+		;
+		
+IfElse ::= IF OPAREN:o Expr:e CPAREN Stmt:s	{: RESULT = new IfStmt(e, s, ParserUtil.none(), oleft); :}
+		| IF OPAREN:o Expr:e CPAREN Stmt:thenS ELSE Stmt:elseS	{: RESULT = new IfStmt(e, thenS, ParserUtil.some(elseS), oleft); :}
+		;
+						
+Expr ::= Location:loc	{: RESULT = new LocExpr(loc, locleft); :}
+		| Call:c	{: RESULT = new CallExpr(c, cleft); :}
+		| THIS:t	{: RESULT = new ThisExpr("this", tleft); :}
+		| NEW CLS_ID:val OPAREN CPAREN	{: RESULT = new ClassExpr(val, valleft); :}
+		| NEW Type:t OBRACKET Expr:e CBRACKET	{: RESULT = new ArrayExpr(t, e, tleft); :}
+		| Expr:e DOT:d LENGTH		{: RESULT = new LengthExpr(e, dleft); :}
+		| Unop:op Expr:e		{: RESULT = new UnExpr(op, e, opleft); :}
+		| Literal:litExpr		{: RESULT = litExpr; :}
+		| OPAREN Expr:e CPAREN	{: RESULT = e; :}
+		| Expr:e1 PLUS Expr: e2	{: RESULT = new BinExpr(e1, new Plus(0), e2, e1left); :}
+		| Expr:e1 MINUS Expr: e2	{: RESULT = new BinExpr(e1, new Minus(0), e2, e1left); :}
+		| Expr:e1 MULT Expr: e2	{: RESULT = new BinExpr(e1, new Mult(0), e2, e1left); :}
+		| Expr:e1 DIV Expr: e2	{: RESULT = new BinExpr(e1, new Div(0), e2, e1left); :}
+		| Expr:e1 MOD Expr: e2	{: RESULT = new BinExpr(e1, new Mod(0), e2, e1left); :}
+		| Expr:e1 AND Expr: e2	{: RESULT = new BinExpr(e1, new And(0), e2, e1left); :}
+		| Expr:e1 OR Expr: e2	{: RESULT = new BinExpr(e1, new Or(0), e2, e1left); :}
+		| Expr:e1 LT Expr: e2	{: RESULT = new BinExpr(e1, new Less(0), e2, e1left); :}
+		| Expr:e1 LE Expr: e2	{: RESULT = new BinExpr(e1, new LessEq(0), e2, e1left); :}
+		| Expr:e1 GT Expr: e2	{: RESULT = new BinExpr(e1, new Greater(0), e2, e1left); :}
+		| Expr:e1 GE Expr: e2	{: RESULT = new BinExpr(e1, new GreaterEq(0), e2, e1left); :}
+		| Expr:e1 EQEQ Expr: e2	{: RESULT = new BinExpr(e1, new Equal(0), e2, e1left); :}
+		| Expr:e1 NE Expr: e2	{: RESULT = new BinExpr(e1, new NotEqual(0), e2, e1left); :}
+		| OPAREN Formals:f CPAREN COLON ReturnType:t EQ GT Block:block	{: RESULT = new FunctionExpr(f, t, block, blockleft); :}
+		;
+		
+FunctionExpr ::= OPAREN Formals:f CPAREN COLON ReturnType:t EQ GT Block:block	{: RESULT = new FunctionExpr(f, t, block, blockleft); :}
+			  ;
+		
+
+Call ::= LibCall:lib			{: RESULT = lib; :}
+		| VirtualCall:virt		{: RESULT = virt; :}	
+		| FunctionCall: fcn		{: RESULT = fcn; :}
+		| AnonCall:anon			{: RESULT = anon; :}
+		;
+		
+LibCall ::= LIBRARY DOT ID:val OPAREN OptionalParams:list CPAREN	{: RESULT = new LibCall(val, list, valleft); :}
+		;
+		
+VirtualCall ::= ID:val OPAREN OptionalParams:list CPAREN	{: RESULT = new VirtualCall(ParserUtil.none(), val, list, valleft); :} 
+			| Expr:e DOT ID:val OPAREN OptionalParams:list CPAREN	{: RESULT = new VirtualCall(ParserUtil.some(e), val, list, valleft); :}
+			;
+			
+FunctionCall ::= ID:val OBRACE OptionalParams:list CBRACE	{: RESULT = new FunctionCall(val, list, valleft); :}
+			;
+			
+AnonCall ::= FunctionExpr:fcnExpr OPAREN OptionalParams:list CPAREN	{: RESULT = new AnonCall(fcnExpr, list, fcnExprleft); :}
+		 ;
+			
+OptionalParams ::= Expr:e ExprsStar:list	{: RESULT = ParserUtil.cons(e, list); :}
+				|	{: RESULT = ParserUtil.empty(); :}
+				;
+				
+ExprsStar ::= ExprsStar:list COMMA Expr:e	{: RESULT = ParserUtil.append(list, e); :}
+			|	{: RESULT = ParserUtil.empty(); :}
+			;
+			
+Location ::= ID:val		{: RESULT = new IdLoc(val, valleft); :}
+		   | Expr:e DOT ID:val		{: RESULT = new DotLoc(e, val, eleft); :}
+		   | Expr:e1 OBRACKET Expr:e2 CBRACKET	{: RESULT = new ArrayLoc(e1, e2, e1left); :}
+		   ;
+			           
+Unop ::= MINUS:m	{: RESULT = new Negative(0); :}
+		| NOT:n	{: RESULT = new Not(0); :}
+		;     
+		
+Literal ::= INT_LIT:val		{: RESULT = new IntExpr(val, valleft); :}
+		  | STRING_LIT:val	{: RESULT = new StringExpr(val, valleft); :}
+		  | BOOL_LIT:val	{: RESULT = new BoolExpr(val, valleft); :}	
+		  | NULL:n			{: RESULT = new NullExpr(nleft); :}
+		  ;    
+

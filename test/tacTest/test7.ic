@@ -1,0 +1,6 @@
+class AndOr {
+	void main (string [] args) {
+		boolean a = false && true;
+		boolean b = true || false;
+	}
+}

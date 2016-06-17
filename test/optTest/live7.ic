@@ -1,0 +1,12 @@
+class LiveWithBooleans {
+	void main (string [] args) {
+		boolean a, b, c;
+		
+		a = true;
+		b = a || false;
+		c = a && b;
+		
+		Library.printb(a);
+		Library.printb(b);
+	}
+}

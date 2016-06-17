@@ -1,0 +1,16 @@
+class CopyIf {
+	void main (string [] args) {
+		int x = 2;
+		int y, z;
+		
+		if (x < 5) {
+			y = 0;
+		} else {
+			y = 1;
+		}
+		
+		z = y + 1; //cannot replace y with anything!
+		Library.printi(z);
+		
+	}
+}

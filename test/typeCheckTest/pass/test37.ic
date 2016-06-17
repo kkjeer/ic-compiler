@@ -1,0 +1,34 @@
+class GeneralTesting {
+	int factorial (int n) {
+		if (n == 0) {
+			return 1;
+		} else {
+			if (n == 1) {
+				return 1;
+			} else {
+				return n * factorial(n - 1);
+			}
+		}
+	}
+	
+	int [][] createMatrix (int rows, int cols) {
+		int [][] matrix = new int [][cols];
+		int row = 0;
+		int col = 0;
+		while (row < rows) {
+			matrix[row] = new int[cols];
+			col = 0;
+			while (col < cols) {
+				matrix[row][col] = 0;
+				col = col + 1;
+			}
+			row = row + 1;
+		}
+		return matrix;
+	}
+	
+	void main (string [] args) {
+		int fact = factorial(3);
+		int [][] matrix = this.createMatrix(5, 6);
+	}
+}

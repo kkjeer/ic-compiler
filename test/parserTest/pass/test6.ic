@@ -1,0 +1,27 @@
+class NestedMethodCalls extends SomeOtherClass {
+	int [] ints;
+	string message1;
+	string message2;
+	boolean condition;
+	boolean [] [] testMatrix;
+	
+	boolean booleanResult (string s, int n) {
+		boolean long = s.length >= n * 2;
+		boolean big = n > this.message1.length + this.message2.length;
+		return long || !big;
+	}
+	
+	string getString (int x, int y) {
+		boolean b = someBoolMethod(someIntMethod(this.ints[x + y], this.testMatrix[x][y]));
+		if (this.booleanResult(this.message1, x * y)) {
+			Library.print("boolean result matched");
+		}
+		if (b || this.booleanResult(someStringMethod(this.message1, this.message2), x - 2 * y)) {
+			Library.print("second block");
+			break;
+		}
+		return otherStringMethod(this.condition, this.testMatrix[x * y]);
+	}
+	
+}
+		

@@ -1,0 +1,11 @@
+class TestLibCalls {
+	void main (string [] args) {
+		int x = Library.readi();
+		string s = Library.readln();
+		boolean b = Library.eof();
+		
+		int y = Library.stoi("Hi", 598);
+		
+		Library.println("Hello");
+	}
+}

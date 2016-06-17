@@ -1,0 +1,12 @@
+class MoreBinExprs {
+	void test (int x, int y, int z) {
+		boolean test1 = x + y * z - 5 >= y / x % z + 8 * 2 && z * z * z <= y - y - y - y || x / x % y - 4 == 5 - z;
+		boolean test2 = z * (1 - x) != y / (9 + 3 * z);
+		boolean test3;
+		test3 = test1 && !(test2 || test1);
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

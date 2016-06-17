@@ -1,0 +1,11 @@
+class SimpleWhile {
+	void testWhile () {
+		while (true) {
+		
+		}
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

@@ -1,0 +1,21 @@
+class ParentMethods {
+	boolean testBoolean (boolean b) {
+		return !b && true;
+	}
+}
+
+class MethodCalls extends ParentMethods {
+	int testInts (int x, int y) {
+		return x + y;
+	}
+	
+	string testString (string s) {
+		return s + " World";
+	}
+	
+	void main (string [] args) {
+		int n = testInts(1, 2);
+		string message = this.testString("Hello");
+		boolean condition = testBoolean(false);
+	}
+}

@@ -1,0 +1,10 @@
+class TestContinue {
+	void main (string [] args) {
+		string s;
+		while (true) {
+			s = "Before continue";
+			continue;
+			s = "After continue";
+		}
+	}
+}

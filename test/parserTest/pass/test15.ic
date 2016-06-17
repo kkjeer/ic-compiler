@@ -1,0 +1,6 @@
+class SimpleVarUse {
+	void myMethod () {
+		int declaredVar = 0;
+		int usingVar = declaredVar + 1;
+	}
+}

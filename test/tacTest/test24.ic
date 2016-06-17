@@ -1,0 +1,17 @@
+class NestedIfs {
+	void main (string [] args) {
+		if (0 < 1) {
+			if (2 <= 3 && 4 > 5) {
+				Library.println("a");
+			} else {
+				Library.println("b");
+			}
+		} else {
+			if (6 >= 7 || 8 == 9) {
+				if (10 != 11) {
+					Library.println("c");
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+class FunctionCalls {
+	void main (string [] args) {
+		int x;
+		<int> => int f;
+		function g(string s):Unit = {
+			
+		}
+		
+		f = (int i): int => {
+			Library.print("Calling function f with argument i = ");
+			Library.printi(i);
+			Library.println("");
+			return i + 1;
+		};
+		
+		Library.println("Project test 5: FunctionCalls");
+		x = f{1};
+		Library.printi(x);
+		Library.println("");
+	}
+}

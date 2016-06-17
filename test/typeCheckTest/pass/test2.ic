@@ -1,0 +1,22 @@
+//testing class return types
+class Animal {
+	Animal getAnimal () {
+		return this;
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class Cow extends Animal {
+	Cow getAnimal () {
+		return this;
+	}
+}
+
+class Monkey extends Animal {
+	Cow getAnimal () {
+		return new Cow();
+	}
+}

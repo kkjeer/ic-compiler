@@ -1,0 +1,27 @@
+class TestVirtualCallsReceiver {
+	void main (string [] args) {
+		A myA = new A();
+		B myB = new B();
+		int x;
+		
+		myA.aMethod();
+		x = myB.bMethod(myB.bHelper());
+	}
+}
+
+class A {
+	void aMethod () {
+		Library.println("Hi from aMethod");
+		return;
+	}
+}
+
+class B {
+	int bMethod (string s) {
+		return 0;
+	}
+	
+	string bHelper () {
+		return "Hi";
+	}
+}

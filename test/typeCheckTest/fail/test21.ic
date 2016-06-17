@@ -1,0 +1,5 @@
+class BadLength {
+	void main (string [] args) {
+		int len = "Hi".length;
+	}
+}

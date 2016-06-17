@@ -1,0 +1,9 @@
+class BadBlock {
+	//testing variable declaration after a statement
+	void badMethod () {
+		if (someCondition) {
+			int x = 0;
+		}
+		int y = 1; //illegal
+	}
+}

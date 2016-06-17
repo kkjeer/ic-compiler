@@ -1,0 +1,13 @@
+class OldClass {
+
+}
+
+class NewClass extends OldClass {
+	int x;
+	boolean b;
+	//OldClass oc;
+	
+	void main () {
+		OldClass oldExpr = new OldClass();
+	}
+}

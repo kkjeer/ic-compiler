@@ -1,0 +1,10 @@
+class TestBreak {
+	void main (string [] args) {
+		string s = "Hi";
+		while (true) {
+			s = "Before break";
+			break;
+			s = "After break";
+		}
+	}
+}

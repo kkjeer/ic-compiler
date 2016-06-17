@@ -1,0 +1,10 @@
+class AvailSimpleArrayLoad {
+	void main (string [] args) {
+		int [] a;
+		int x, y;
+		
+		a = new int [3];
+		x = a[0];
+		y = a[0];
+	}
+}

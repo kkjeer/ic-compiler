@@ -1,0 +1,24 @@
+class AvailMoreArrays {
+	void main (string [] args) {
+		int [] ints;
+		string [] strings;
+		boolean [] bools;
+		
+		int x, y, z;
+		string s, w;
+		boolean a, b;
+		
+		x = 3 + 4;
+		ints = new int[3 + 4];
+		
+		strings = new string[3 + 4];
+		s = "Hello " + "World";
+		strings[0] = s;
+		w = strings[0];
+		
+		bools = new boolean[3 + 4];
+		a = true;
+		bools[5] = a;
+		b = bools[5] && true;
+	}
+}

@@ -1,0 +1,28 @@
+//testing multiple class declarations within a program
+class FirstClass {
+	int x;
+	
+	int firstMethod () {
+		return 0;
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class SecondClass {
+	string s;
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class ThirdClass {
+	boolean b;
+	
+	void main (string [] args) {
+	
+	}
+}

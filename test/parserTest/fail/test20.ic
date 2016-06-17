@@ -1,0 +1,3 @@
+class NestedArrays {
+	int [] boolean [] string [] badArray;
+}

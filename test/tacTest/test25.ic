@@ -1,0 +1,21 @@
+class NestedBinUnExprs {
+	void main (string [] args) {
+		int x, y, z, w;
+		boolean a, b, c, d;
+		string s, u, v;
+		
+		x = 1 * 2 - 5 / 6;
+		y = x % (4 + 3);
+		z = y * x / (0 + 1);
+		w = z - y * -x;
+		
+		a = true || false && !true;
+		b = a || !(true && true || false) && !a;
+		c = (a || b) || (b && a);
+		d = !(c && !b) || (!a && !(c || c));
+		
+		s = "Hello" + "World";
+		u = s + "and" + "Compilers";
+		v = s + u + "CS 301";
+	}
+}

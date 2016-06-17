@@ -1,0 +1,5 @@
+class BadNotEqual {
+	void main (string [] args) {
+		boolean b = true != "what?";
+	}
+}

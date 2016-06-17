@@ -1,0 +1,10 @@
+class AvailSimpleArrayStore {
+	void main (string [] args) {
+		int [] a = new int[3];
+		int x, y;
+		
+		x = 7;
+		a[0] = x;
+		y = a[0]; //replace with y = x
+	}
+}

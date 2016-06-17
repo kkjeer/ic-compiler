@@ -1,0 +1,12 @@
+class ConstFoldIf {
+	void main (string [] args) {
+		boolean condition = true || false;
+		int x;
+		if (condition) {
+			x = 1 + 2;
+		} else {
+			x = 6 - 3;
+		}
+		Library.printi(x);
+	}
+}

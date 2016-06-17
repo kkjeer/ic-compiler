@@ -1,0 +1,12 @@
+class LiteralClass {
+
+	//testing Literals
+	void main () {
+		int x = 1;
+		string s = "Hello World";
+		string n = null;
+		boolean a = true;
+		boolean b = false;
+	}
+	
+}

@@ -1,0 +1,2 @@
+#Project Status
+We have implemented the grammar for IC. According to our test suite, the parser recognizes valid IC programs and rejects invalid ones. In addition, we have made an initial design of our AST class hierarchy, included in this directory as AST_Nodes_Revised.pdf. The list of operations in the root AST node class is still an open issue. The root node class so far is planned to contain a typeCheck operation and a declaredBeforeUse operation (see AST_Nodes_Revised.pdf). 

@@ -1,0 +1,130 @@
+class Zoo {
+	Animal [] animals;
+	Cat [] cats;
+	Dog [] dogs;
+	void main (string [] args) {
+		animals = new Animal[10];
+		cats = new Cat[20];
+		dogs = new Dog[2];
+		
+		animals[0] = new Bear();
+		animals[0].eat();
+		
+		cats[0] = new Cat();
+		cats[0].hunt();
+		
+		cats[1] = new Lion();
+		cats[1].speak();
+		
+		cats[2] = new Tiger();
+		cats[2].hunt();
+		cats[2].meow();
+		
+		dogs[0] = new Dog();
+		dogs[0].speak();
+		
+		dogs[1] = new Wolf();
+		dogs[1].eat();
+		
+		dogs[2] = new Werewolf();
+		dogs[2].hunt();
+	}
+}
+
+class Animal {
+	boolean isHungry;
+	
+	void speak () {
+		Library.println("Hello");
+	}
+	
+	void eat () {
+		isHungry = false;
+	}
+}
+
+class Predator extends Animal {
+	Prey hunt () {
+		return new Prey();
+	}
+}
+
+class Cat extends Predator {
+	void meow () {
+		Library.println("meow");
+	}
+	
+	void eat () {
+		Prey food = this.hunt();
+		isHungry = false;
+	}
+}
+
+class Lion extends Cat {
+	void meow () {
+		Library.println("roar");
+	}
+	
+	Mouse hunt () {
+		return new Mouse();
+	}
+	
+	void eat () {
+		Mouse food = new Mouse();
+		food.run();
+	}
+}
+
+class Tiger extends Cat {
+	void eat () {
+		Mouse food = this.hunt();
+		food.run();
+		isHungry = false;
+	}
+	
+	Mouse hunt () {
+		return new Mouse();
+	}
+}
+
+class Bear extends Predator {
+	void speak () {
+		Library.println("oh my");
+	}
+	
+	Fish hunt () {
+		return new Fish();
+	}
+}
+
+class Dog extends Predator {
+	void bark () {
+		Library.println("woof");
+	}
+}
+
+class Wolf extends Dog {
+	void bark () {
+		Library.println("oooowwwww");
+	}
+}
+
+class Werewolf extends Wolf {
+	
+}
+
+class Prey extends Animal {
+	void run () {
+		Library.println("Run far far away");
+	}
+}
+
+class Mouse extends Prey {
+
+}
+
+class Fish extends Prey {
+	void swim () {
+		Library.println("Just keep swimming");
+	}
+}

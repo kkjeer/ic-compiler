@@ -1,0 +1,22 @@
+class ReallySimple {
+	void main (string [] args) {
+		function f(int i): Unit = {
+			Library.print("i: ");
+			Library.printi(i);
+			Library.println("");
+		}
+		
+		Library.println("Project test 11: ReallySimple");
+		f{6};
+		otherMethod(8, "hi");
+	}
+	
+	void otherMethod(int x, string s) {
+		Library.print("x: ");
+		Library.printi(x);
+		Library.println("");
+		Library.print("s: ");
+		Library.print(s);
+		Library.println("");
+	}
+}

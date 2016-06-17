@@ -1,0 +1,16 @@
+class LiveWithBinExprs {
+	void main (string [] args) {
+		int x, y, z;
+		string s1, s2;
+		
+		x = 5;
+		y = x * 3;
+		z = x - y + 3 * 4;
+		
+		s1 = "Live";
+		s2 = s1 + "Dead";
+		
+		Library.printi(x + y);
+		Library.println(s1);
+	}	
+}

@@ -1,0 +1,5 @@
+class BadLess {
+	void main (string [] args) {
+		boolean cond = null < args[args.length - 1];
+	}
+}

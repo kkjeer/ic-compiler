@@ -1,0 +1,28 @@
+class MyObject {
+	int objX, objY;
+	
+	void changeInts () {
+		objX = 0;
+		objY = 1;
+	}
+}
+
+class AvailFields {
+	void main (string [] args) {
+		MyObject myObj;
+		int x, y, z;
+		
+		myObj = new MyObject();
+		
+		x = myObj.objX; 
+		y = myObj.objX; //replace with y = x
+		
+		myObj.objY = x;
+		z = myObj.objY; //replace with z = x
+		
+		myObj.changeInts();
+		z = myObj.objX; //can't replace
+		
+		Library.printi(z);
+	}
+}

@@ -1,0 +1,10 @@
+class BadArrayStores {
+	void bad (int x, string s, boolean b) {
+		int [] ints = new int[x];
+		ints[s] = 0;
+	}
+	
+	void main (string [] args) {
+		bad();
+	}
+}

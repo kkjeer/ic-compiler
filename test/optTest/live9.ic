@@ -1,0 +1,9 @@
+class LiveWhile {
+	void main (string [] args) {
+		boolean condition = true;
+		int x = 0;
+		while (condition) {
+			x = 3;
+		}
+	}
+}

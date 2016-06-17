@@ -1,0 +1,12 @@
+class CopyIf {
+	void main (string [] args) {
+		int x, y;
+		if (true) {
+			x = 5;
+		} else {
+			x = 5;
+		}
+		y = x + 1; //x is definitely 5 here
+		Library.printi(y);
+	}
+}

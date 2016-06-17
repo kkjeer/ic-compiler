@@ -1,0 +1,16 @@
+class Shadowing {
+	int x;
+	
+	void test (int x) {
+		int x = 2;
+		if (true) {
+			int x = 3;
+		} else {
+			while (false) {
+				int x = 4;
+			}
+		}
+		x = 5;
+	}
+}
+			

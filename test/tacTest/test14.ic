@@ -1,0 +1,7 @@
+class TestIf {
+	void main (string [] args) {
+		if (true) {
+			Library.println("Yes");
+		}
+	}
+}

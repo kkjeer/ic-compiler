@@ -1,0 +1,11 @@
+class FirstMain {
+	void main (string [] args) {
+		Library.println("first main");
+	}
+}
+
+class SecondMain {
+	void main (string [] args) {
+		Library.println("second main");
+	}
+}

@@ -1,0 +1,26 @@
+//testing overriding in transitive subclasses
+class Animal {
+	void speak () {
+		Library.println("Hi");
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class Cat extends Animal {
+	void meow () {
+		Library.println("Meow");
+	}
+}
+
+class Siamese extends Cat {
+	void speak () {
+		Library.println("Hello");
+	}
+	
+	void meow () {
+		Library.println("Miaow");
+	}
+}

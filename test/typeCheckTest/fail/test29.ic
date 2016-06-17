@@ -1,0 +1,5 @@
+class BadLessEq {
+	void main (string [] args) {
+		boolean leq = true <= false;
+	}
+}

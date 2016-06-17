@@ -1,0 +1,5 @@
+class BadNegative {
+	void main (string [] args) {
+		int x = -true;
+	}
+}

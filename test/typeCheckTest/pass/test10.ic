@@ -1,0 +1,17 @@
+class MainWithMultipleArgs {
+	void main (string [] args, string [] other) {
+	
+	}
+}
+
+class MainWithNoArgs {
+	void main () {
+	
+	}
+}
+
+class RealMain {
+	void main (string [] args) {
+	
+	}
+}

@@ -1,0 +1,5 @@
+class BadMethodCall {
+	void main (string [] args) {
+		int n = this.missingMethod();
+	}
+}

@@ -1,0 +1,15 @@
+class Parent {
+	int x;
+}
+
+class Child extends Parent {
+	void testChild () {
+		x = 1;
+	}
+}
+
+class Grandchild extends Child {
+	void testGrandchild () {
+		x = 2;
+	}
+}

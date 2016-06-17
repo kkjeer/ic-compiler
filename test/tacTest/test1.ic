@@ -1,0 +1,6 @@
+class FirstTest {
+	void main (string [] args) {
+		int x = 0;
+		x = 1;
+	}
+}

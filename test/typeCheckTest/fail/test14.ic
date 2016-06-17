@@ -1,0 +1,8 @@
+class BadBreak {
+	void main (string [] args) {
+		while (true) {
+			break;
+		}
+		break;
+	}
+}

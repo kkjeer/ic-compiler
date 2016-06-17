@@ -1,0 +1,7 @@
+class BadIf {
+	void main () {
+		if condition { //missing parentheses around condition
+			Library.println("hi");
+		}
+	}
+}

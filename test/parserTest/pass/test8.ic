@@ -1,0 +1,3 @@
+class CS301 extends CSCore { 
+	// Test class definition. 
+}

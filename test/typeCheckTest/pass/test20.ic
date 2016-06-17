@@ -1,0 +1,15 @@
+class TestArrayElements {
+	void test (int x, string s, boolean b) {
+		int [] ints = new int[1];
+		string [] strings = new string [5];
+		boolean [] booleans = new boolean[x * 2];
+		
+		ints[1] = x % 3;
+		strings[ints[1] + 4] = s + "ending";
+		booleans[x/2] = x > (3 + 4) || b;
+	}
+	
+	void main (string [] args) {
+		test(10, "hi", false);
+	}
+}

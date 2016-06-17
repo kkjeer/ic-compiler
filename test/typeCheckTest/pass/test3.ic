@@ -1,0 +1,32 @@
+//testing primitive parameters
+class ParentParams {
+	void intParams (int x, int y) {
+		int z = x + y;
+	}
+	
+	boolean stringParams (string s, string t, string u) {
+		return true;
+	}
+	
+	int mixedParams (string s, boolean b, int x, string t) {
+		return 0;
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class ChildParams extends ParentParams {
+	void intParams (int thing1, int thing2) {
+		int thing3 = thing1 - thing2;
+	}
+	
+	boolean stringParams (string str1, string str2, string str3) {
+		return false;
+	}
+	
+	int mixedParams (string myStr, boolean myBool, int myInt, string myStr2) {
+		return 1;
+	}
+}

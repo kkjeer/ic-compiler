@@ -1,0 +1,11 @@
+class BadWhileCond {
+	int getInt () {
+		return 6;
+	}
+	
+	void main (string [] args) {
+		while (getInt()) {
+			Library.println("what???");
+		}
+	}
+}

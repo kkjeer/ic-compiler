@@ -1,0 +1,16 @@
+//testing illegal class parameter types
+class Animal {
+	void speak (Animal a) {
+		Library.println("Hi from an Animal");
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class Cow extends Animal {
+	void speak (Cow c) {
+		Library.println("I should take an Animal");
+	}
+}

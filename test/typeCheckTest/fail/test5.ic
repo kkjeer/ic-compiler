@@ -1,0 +1,15 @@
+class Parent {
+	string moreBadParams (string s, boolean b) {
+		return "I take two arguments";
+	}
+}
+
+class TooFewParams extends Parent {
+	string moreBadParams (string s) {
+		return "I only take one argument";
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

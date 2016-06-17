@@ -1,0 +1,5 @@
+class MoreBadMethodCall {
+	void main (string [] args) {
+		boolean b = anotherMissingMethod(1, "hi", true);
+	}
+}

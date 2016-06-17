@@ -1,0 +1,5 @@
+class BadEqual {
+	void main (string [] args) {
+		int eq = "hi" == 2;
+	}
+}

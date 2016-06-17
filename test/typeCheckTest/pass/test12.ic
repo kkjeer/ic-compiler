@@ -1,0 +1,27 @@
+class ParamUse {
+	void test (int x, string s, boolean b) {
+		x = 1 + 2;
+		s = "Hello World";
+		b = true;
+	}
+	
+	void testVarDecls () {
+		int x = 1;
+		string s = "Hello World";
+		boolean b = true;
+	}
+	
+	void testIntArrays () {
+		int [] xArr = new int[5];
+		int [] yArr = new int[3];
+		int x, y, z, w;
+		x = xArr.length;
+		y = yArr[0];
+		z = xArr[xArr.length - 1];
+		w = xArr.length * xArr[yArr.length - 2];
+	}
+	
+	void main (string [] args) {
+	
+	}
+}

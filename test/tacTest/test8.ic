@@ -1,0 +1,8 @@
+class DivAndMod {
+	void main (string [] args) {
+		int x = 1 / 2;
+		int y = 3 / 0;
+		int z = 4 % 5;
+		int w = 6 % 0; 
+	}
+}

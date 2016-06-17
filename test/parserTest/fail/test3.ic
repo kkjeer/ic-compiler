@@ -1,0 +1,3 @@
+class BadVars {
+	int x = 1;
+}

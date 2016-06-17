@@ -1,0 +1,42 @@
+class Simple {
+	void main (string [] args) {
+		function f(): Unit = {
+			int x = 0;
+			Library.printi(x);
+		}
+		
+		boolean b;
+		
+		int anonResult = (): int => {return 0;}();
+		
+		<int> => boolean g;
+		
+		Library.println("Project test 8: Simple");
+		
+		g = (int gParam): boolean => {
+			return true;
+		};
+		
+		b = g{1};
+		Library.print("b: ");
+		Library.printb(b);
+		Library.println("");
+		
+		g = (int newGParam): boolean => {
+			return false;
+		};
+		
+		b = g{2};
+		
+		f = (): Unit => {
+			string str = "Hello World";
+			Library.println(str);
+		};
+		
+		
+		f{};
+		Library.print("b: ");
+		Library.printb(b);
+		Library.println("");
+	}
+}

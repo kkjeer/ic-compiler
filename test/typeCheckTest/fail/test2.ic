@@ -1,0 +1,15 @@
+class BadParent {
+	void myMethod () {
+		Library.println("This should be void in the child!");
+	}
+	
+	void main (string [] stringArgs) {
+	
+	}
+}
+
+class BadChild extends BadParent {
+	int myMethod () {
+		return 0;
+	}
+}

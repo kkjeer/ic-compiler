@@ -1,0 +1,11 @@
+class MoreBadWhile {
+	void test () {
+	
+	}
+	
+	void main (string [] args) {
+		while (test()) {
+			//do things
+		}
+	}
+}

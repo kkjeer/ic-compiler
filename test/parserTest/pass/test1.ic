@@ -1,0 +1,20 @@
+class ParentClass {
+
+}
+
+class MyClass extends ParentClass { 
+	int x; 
+	void myMethod (int a, string b) {
+		int x = 2 + 3;
+		boolean thing = !false;
+		string myString = this.length;
+		int myInt = this, myOtherInt = this;
+		boolean myBool = this.length;
+		this.otherMethod(this.length, this);
+		if (true) {
+			return;
+		} else {
+		
+		}
+	}
+}

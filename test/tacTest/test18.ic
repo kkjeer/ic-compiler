@@ -1,0 +1,10 @@
+class NestedBreaks {
+	void main (string [] args) {
+		while (true) {
+			while (false) {
+				break;
+			}
+			break;
+		}
+	}
+}

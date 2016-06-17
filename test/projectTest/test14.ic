@@ -1,0 +1,9 @@
+class SimpleWhile {
+	void main (string [] args) {
+		int i = 0;
+		while (i < 5) {
+			i = i + 1;
+		}
+		Library.println("done with while loop!");
+	}
+}

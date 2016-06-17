@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{tabularx}
+\usepackage{longtable}
+\geometry{legalpaper, portrait, margin=0.5in}
+\renewcommand\arraystretch{2}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\title{AST Nodes}
+\author{Team Spr LOL Ctz}
+\date{February 2016}
+
+\begin{document}
+
+\maketitle
+
+\section{AST Operations}
+The root AST node class has two operations:
+\begin{itemize}
+    \item \texttt{typeCheck} - checks the types of its child nodes and returns true if and only if the type check passes
+    \item \texttt{declaredBeforeUse} - checks that all contained variables within its child nodes are declared before their use
+\end{itemize}
+\section{AST Node Types}
+
+\begin{longtable}{p{.20\textwidth} | p{.80\textwidth}}
+    \textbf{Node} & \textbf{Fields} \\\hline
+    Program & \texttt{List<ClassDecl>} classes \\\hline
+    ClassDecl & \texttt{String} classId, \texttt{Option(String)} extendsId, \texttt{List<FieldDecl>} fields, \texttt{List<MethodDecl>} methods \\\hline
+    FieldDecl & \texttt{List<Var>} vars \tab\tab //Each \texttt{Var} has the same \texttt{Type} \\\hline
+    MethodDecl & \\\hline
+    ---VoidMethod & \texttt{String} id, \texttt{Option(Formals)} formals, \texttt{Block} block \\\hline
+    ---FruitfulMethod & \texttt{Type} returnType, \texttt{String} id, \texttt{Option(Formals)} formals, \texttt{Block} block \\\hline
+    Formals & \texttt{List<Var>} vars \tab\tab //Each \texttt{Var} can have a different \texttt{Type} \\\hline
+    Type & \\\hline
+    ---IntType & \\\hline
+    ---BoolType & \\\hline
+    ---StringType & \\\hline
+    ---ClassType & \texttt{String} classId \\\hline
+    ---ArrayType & \texttt{Type} arrayType \\\hline
+    VarDecl & \texttt{Type} type, \texttt{List<AssignVar>} vars \\\hline
+    Stmt & \\\hline
+    ---Block & \texttt{List<VarDecl>} vars, \texttt{List<Stmt>} stmts \\\hline
+    ---LocStmt & \texttt{Location} loc, \texttt{Expr} e \\\hline
+    ---CallStmt & \texttt{Call} call \\\hline
+    ---ReturnStmt & \texttt{Option(Expr)} e \\\hline
+    ---IfStmt & \texttt{Expr} cond, \texttt{Stmt} then, \texttt{Option(Stmt)} else \\\hline
+    ---WhileStmt & \texttt{Expr} e, \texttt{Stmt} s \\\hline
+    ---BreakStmt & \\\hline
+    ---ContinueStmt & \\\hline
+    Expr & \\\hline
+    ---LocExpr & \texttt{Location} loc \\\hline
+    ---CallExpr & \texttt{Call} call \\\hline
+    ---ThisExpr & \\\hline
+    ---ClassExpr & \texttt{String} classId \\\hline
+    ---ArrayExpr & \texttt{Type} type, \texttt{Expr} e \\\hline
+    ---LengthExpr & \texttt{Expr} e \\\hline
+    ---BinExpr & \texttt{Expr} e1, \texttt{Binop} op, \texttt{Expr} e2 \\\hline
+    ---UnExpr & \texttt{Unop} op, \texttt{Expr} e \\\hline
+    ---IntExpr & \texttt{int} val \\\hline
+    ---StringExpr & \texttt{string} val \\\hline
+    ---BoolExpr & \texttt{boolean} val \\\hline
+    ---NullExpr & \\\hline
+    Call & \\\hline
+    ---LibCall & \texttt{String} id, \texttt{List<Expr>} exprs \\\hline
+    ---VirtualCall & \texttt{Option(Expr)} e, \texttt{String} id, \texttt{List<Expr>} exprs \\\hline
+    Location & \\\hline
+    ---IdLoc & \texttt{String} id \\\hline
+    ---DotLoc & \texttt{Expr} e, \texttt{String} id \\\hline
+    ---ArrayLoc & \texttt{Expr} e1, \texttt{Expr} e2 \\\hline
+    Binop & \\\hline
+    ---Plus & \\\hline
+    ---Minus &  \\\hline
+    ---Mult & \\\hline
+    ---Div & \\\hline
+    ---Mod & \\\hline
+    ---And & \\\hline
+    ---Or & \\\hline
+    ---Less & \\\hline
+    ---LessEq & \\\hline
+    ---Greater & \\\hline
+    ---GreaterEq & \\\hline
+    ---Equal & \\\hline
+    ----NotEqual & \\\hline
+    Unop & \\\hline
+    ---Negative & \\\hline
+    ---Not & \\\hline
+    Var & \texttt{Type} type, \texttt{String} id \\\hline
+    AssignVar & \texttt{String} id, \texttt{Option(Expr)} e \\\hline
+\end{longtable}
+
+\end{document}

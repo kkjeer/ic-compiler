@@ -1,0 +1,17 @@
+class LiveWithUnExprs {
+	void main (string [] args) {
+		int liveInt = 0, deadInt = 1;
+		boolean liveBool = true, deadBool = false;
+		int usesLiveInt;
+		boolean usesLiveBool;
+		
+		deadInt = -deadInt;
+		deadBool = !deadBool;
+		
+		usesLiveInt = -liveInt;
+		usesLiveBool = !liveBool;
+		
+		Library.printi(usesLiveInt);
+		Library.printb(usesLiveBool);
+	}
+}

@@ -1,0 +1,8 @@
+class BadArrayAccess extends MoreBadness {
+	int [] nums;
+	boolean condition;
+	
+	void main (string [] args) {
+		int x = this.nums[if (condition) {return 0;} else {return 1;}];
+	}
+}

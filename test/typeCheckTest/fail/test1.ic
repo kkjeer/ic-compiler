@@ -1,0 +1,15 @@
+class ParentBadReturn {
+	int returnInt () {
+		return 0;
+	}
+	
+	void main (string [] args) {
+	
+	}
+}
+
+class ChildBadReturn extends ParentBadReturn {
+	string returnInt () {
+		return "I am bad";
+	}
+}

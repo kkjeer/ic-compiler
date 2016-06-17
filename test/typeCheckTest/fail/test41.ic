@@ -1,0 +1,8 @@
+class ParamShadowing {
+	void test (int x) {
+		int x = 0;
+	}
+	void main (string [] args) {
+	
+	}
+}

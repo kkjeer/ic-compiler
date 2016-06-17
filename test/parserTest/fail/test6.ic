@@ -1,0 +1,5 @@
+class BadFormals {
+	void badMethod (string s, a, b, c) {
+	
+	}
+}

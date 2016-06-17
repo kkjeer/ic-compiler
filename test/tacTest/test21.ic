@@ -1,0 +1,10 @@
+class StringConcat {
+	void main (string [] args) {
+		string s = "Hello" + "World";
+		string z = "CS";
+		string u = "301";
+		string w;
+		
+		w = z + u;
+	}
+}

@@ -1,0 +1,9 @@
+class TestIfElse {
+	void main (string [] args) {
+		if (true) {
+			Library.println("Yes");
+		} else {
+			Library.println("No");
+		}
+	}
+}
